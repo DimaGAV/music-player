@@ -1,3 +1,7 @@
+import Burger from "@/components/Burger/Burger";
+import Filter from "@/components/Filter/Filter";
+import Menu from "@/components/Menu/Menu";
+import Sidebar from "@/components/Sidebar/Sidebar";
 import Image from "next/image";
 // import styles from "./page.module.css";
 
@@ -16,39 +20,8 @@ export default function Home() {
             height={17}
           />
         </div>
-        <div className="nav__burger burger">
-          <span className="burger__line" />
-          <span className="burger__line" />
-          <span className="burger__line" />
-        </div>
-        <div className="nav__menu menu">
-          <ul className="menu__list">
-            <li className="menu__item">
-              <a
-                className="menu__link"
-                href="#"
-              >
-                Главное
-              </a>
-            </li>
-            <li className="menu__item">
-              <a
-                className="menu__link"
-                href="#"
-              >
-                Мой плейлист
-              </a>
-            </li>
-            <li className="menu__item">
-              <a
-                className="menu__link"
-                href="../signin.html"
-              >
-                Войти
-              </a>
-            </li>
-          </ul>
-        </div>
+        <Burger/>
+        <Menu/>
       </nav>
       <div className="main__centerblock centerblock">
         <div className="centerblock__search search">
@@ -65,20 +38,7 @@ export default function Home() {
         <h2 className="centerblock__h2">
           Треки
         </h2>
-        <div className="centerblock__filter filter">
-          <div className="filter__title">
-            Искать по:
-          </div>
-          <div className="filter__button button-author _btn-text">
-            исполнителю
-          </div>
-          <div className="filter__button button-year _btn-text">
-            году выпуска
-          </div>
-          <div className="filter__button button-genre _btn-text">
-            жанру
-          </div>
-        </div>
+        <Filter/>
         <div className="centerblock__content playlist-content">
           <div className="content__title playlist-title">
             <div className="playlist-title__col col01">
@@ -849,64 +809,7 @@ export default function Home() {
           </div>
         </div>
       </div>
-      <div className="main__sidebar sidebar">
-        <div className="sidebar__personal">
-          <p className="sidebar__personal-name">
-            Sergey.Ivanov
-          </p>
-          <div className="sidebar__icon">
-            <svg>
-              <use xlinkHref="img/icon/sprite.svg#logout" />
-            </svg>
-          </div>
-        </div>
-        <div className="sidebar__block">
-          <div className="sidebar__list">
-            <div className="sidebar__item">
-              <a
-                className="sidebar__link"
-                href="#"
-              >
-                <Image
-                  alt="day's playlist"
-                  className="sidebar__img"
-                  src="/img/playlist01.png"
-                  width={250}
-                  height={150}
-                />
-              </a>
-            </div>
-            <div className="sidebar__item">
-              <a
-                className="sidebar__link"
-                href="#"
-              >
-                <Image
-                  alt="day's playlist"
-                  className="sidebar__img"
-                  src="/img/playlist02.png"
-                  width={250}
-                  height={150}
-                />
-              </a>
-            </div>
-            <div className="sidebar__item">
-              <a
-                className="sidebar__link"
-                href="#"
-              >
-                <Image
-                  alt="day's playlist"
-                  className="sidebar__img"
-                  src="/img/playlist03.png"
-                  width={250}
-                  height={150}
-                />
-              </a>
-            </div>
-          </div>
-        </div>
-      </div>
+      <Sidebar/>
     </main>
     <div className="bar">
       <div className="bar__content">
