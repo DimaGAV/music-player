@@ -1,5 +1,5 @@
 import Image from "next/image";
-import styles from "./page.module.css";
+// import styles from "./page.module.css";
 
 export default function Home() {
   return (
@@ -10,7 +10,10 @@ export default function Home() {
         <div className="nav__logo logo">
           <Image
             className="logo__image"
-            src="img/logo.png"
+            src="/img/logo.png"
+            alt="Logo"
+            width={114}
+            height={17}
           />
         </div>
         <div className="nav__burger burger">
@@ -864,10 +867,12 @@ export default function Home() {
                 className="sidebar__link"
                 href="#"
               >
-                <img
+                <Image
                   alt="day's playlist"
                   className="sidebar__img"
-                  src="img/playlist01.png"
+                  src="/img/playlist01.png"
+                  width={250}
+                  height={150}
                 />
               </a>
             </div>
@@ -876,10 +881,12 @@ export default function Home() {
                 className="sidebar__link"
                 href="#"
               >
-                <img
+                <Image
                   alt="day's playlist"
                   className="sidebar__img"
-                  src="img/playlist02.png"
+                  src="/img/playlist02.png"
+                  width={250}
+                  height={150}
                 />
               </a>
             </div>
@@ -888,10 +895,12 @@ export default function Home() {
                 className="sidebar__link"
                 href="#"
               >
-                <img
+                <Image
                   alt="day's playlist"
                   className="sidebar__img"
-                  src="img/playlist03.png"
+                  src="/img/playlist03.png"
+                  width={250}
+                  height={150}
                 />
               </a>
             </div>
