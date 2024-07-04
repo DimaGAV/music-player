@@ -568,7 +568,7 @@ body {
   stroke: #696969;
 } */
 
-.player__track-play {
+/* .player__track-play {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -683,7 +683,7 @@ body {
   height: 13px;
   fill: transparent;
   stroke: #696969;
-}
+} */
 
 /* .volume__content {
   display: -webkit-box;

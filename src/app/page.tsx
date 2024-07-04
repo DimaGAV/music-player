@@ -4,6 +4,7 @@ import Filter from "@/components/Filter/Filter";
 import Menu from "@/components/Menu/Menu";
 import Sidebar from "@/components/Sidebar/Sidebar";
 import Track from "@/components/Track/Track";
+import TrackPlay from "@/components/TrackPlay/TrackPlay";
 import Volume from "@/components/Volume/Volume";
 import Image from "next/image";
 // import styles from "./page.module.css";
@@ -778,43 +779,7 @@ export default function Home() {
         <div className="bar__player-block">
           <div className="bar__player player">
             <Controls/>
-            <div className="player__track-play track-play">
-              <div className="track-play__contain">
-                <div className="track-play__image">
-                  <svg className="track-play__svg">
-                    <use xlinkHref="img/icon/sprite.svg#icon-note" />
-                  </svg>
-                </div>
-                <div className="track-play__author">
-                  <a
-                    className="track-play__author-link"
-                    href="http://"
-                  >
-                    Ты та...
-                  </a>
-                </div>
-                <div className="track-play__album">
-                  <a
-                    className="track-play__album-link"
-                    href="http://"
-                  >
-                    Баста
-                  </a>
-                </div>
-              </div>
-              <div className="track-play__like-dis">
-                <div className="track-play__like _btn-icon">
-                  <svg className="track-play__like-svg">
-                    <use xlinkHref="img/icon/sprite.svg#icon-like" />
-                  </svg>
-                </div>
-                <div className="track-play__dislike _btn-icon">
-                  <svg className="track-play__dislike-svg">
-                    <use xlinkHref="img/icon/sprite.svg#icon-dislike" />
-                  </svg>
-                </div>
-              </div>
-            </div>
+            <TrackPlay/>
           </div>
           <Volume/>
         </div>
