@@ -301,7 +301,7 @@ body {
   margin-bottom: 12px;
 }
 
-.playlist__track {
+/* .playlist__track {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -315,9 +315,9 @@ body {
   -webkit-box-align: center;
   -ms-flex-align: center;
   align-items: center;
-}
+} */
 
-.track__title {
+/* .track__title {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -329,9 +329,9 @@ body {
   -ms-flex-align: center;
   align-items: center;
   width: 447px;
-}
+} */
 
-.track__title-image {
+/* .track__title-image {
   width: 51px;
   height: 51px;
   padding: 16px;
@@ -346,9 +346,9 @@ body {
   -ms-flex-pack: center;
   justify-content: center;
   margin-right: 17px;
-}
+} */
 
-.track__title-svg {
+/* .track__title-svg {
   width: 18px;
   height: 17px;
   fill: transparent;
@@ -417,7 +417,7 @@ body {
   line-height: 24px;
   text-align: right;
   color: #696969;
-}
+} */
 
 
 .bar {
