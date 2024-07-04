@@ -2,6 +2,7 @@ import Burger from "@/components/Burger/Burger";
 import Filter from "@/components/Filter/Filter";
 import Menu from "@/components/Menu/Menu";
 import Sidebar from "@/components/Sidebar/Sidebar";
+import Volume from "@/components/Volume/Volume";
 import Image from "next/image";
 // import styles from "./page.module.css";
 
@@ -881,22 +882,7 @@ export default function Home() {
               </div>
             </div>
           </div>
-          <div className="bar__volume-block volume">
-            <div className="volume__content">
-              <div className="volume__image">
-                <svg className="volume__svg">
-                  <use xlinkHref="img/icon/sprite.svg#icon-volume" />
-                </svg>
-              </div>
-              <div className="volume__progress _btn">
-                <input
-                  className="volume__progress-line _btn"
-                  name="range"
-                  type="range"
-                />
-              </div>
-            </div>
-          </div>
+          <Volume/>
         </div>
       </div>
     </div>

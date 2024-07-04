@@ -474,7 +474,7 @@ body {
   justify-content: flex-start;
 }
 
-.bar__volume-block {
+/* .bar__volume-block {
   width: auto;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -483,7 +483,7 @@ body {
   -ms-flex-align: center;
   align-items: center;
   padding: 0 92px 0 0;
-}
+} */
 
 .player__controls {
   display: -webkit-box;
@@ -685,7 +685,7 @@ body {
   stroke: #696969;
 }
 
-.volume__content {
+/* .volume__content {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -719,4 +719,4 @@ body {
 
 .volume__progress-line {
   width: 109px;
-}
+} */
