@@ -22,7 +22,7 @@ const Sidebar = () => {
               >
                 <Image
                   alt="day's playlist"
-                  className={styles.sidebarImg}
+                  // className={styles.sidebarImg}
                   src="/img/playlist01.png"
                   width={250}
                   height={150}
