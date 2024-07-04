@@ -56,11 +56,11 @@ body {
   cursor: pointer;
 } */
 
-._btn-icon:hover svg {
+/* ._btn-icon:hover svg {
   fill: transparent;
   stroke: #acacac;
   cursor: pointer;
-}
+} */
 
 /* ._btn-text:active {
   border-color: #ad61ff;
@@ -485,7 +485,7 @@ body {
   padding: 0 92px 0 0;
 } */
 
-.player__controls {
+/* .player__controls {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -494,9 +494,9 @@ body {
   -ms-flex-direction: row;
   flex-direction: row;
   padding: 0 27px 0 31px;
-}
+} */
 
-.player__btn-prev,
+/* .player__btn-prev,
 .player__btn-play,
 .player__btn-next,
 .player__btn-repeat,
@@ -566,7 +566,7 @@ body {
   height: 12px;
   fill: transparent;
   stroke: #696969;
-}
+} */
 
 .player__track-play {
   display: -webkit-box;
