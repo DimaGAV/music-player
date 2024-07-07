@@ -38,3 +38,36 @@
         cursor: pointer;
     }
 }
+
+.filterWrapper {
+    position: relative;
+}
+
+.filterButton {
+    cursor: pointer;
+}
+
+.filterList {
+    /* width: 248px;
+    height: 305px; */
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    position: absolute;
+    background: #313131;
+    border: none;
+    border-radius: 10px;
+    z-index: 1000;
+    overflow: auto;
+}
+
+.filterListItem {
+    padding: 8px 16px;
+    cursor: pointer;
+}
+
+.filterListItem:hover {
+    color: #d9b6ff;
+    text-decoration: underline;
+    text-decoration-color: #d9b6ff;
+}

@@ -29,8 +29,7 @@ const {name, author, album, duration_in_seconds} = track
             </div>
             <div className="track__title-text">
               <span
-                className={styles.trackTitleLink}
-                              >
+                className={styles.trackTitleLink}>
                 {name}
                 <span className={styles.trackTitleSpan} />
               </span>

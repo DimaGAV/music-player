@@ -21,6 +21,7 @@ const Sidebar = () => {
                 href="#"
               >
                 <Image
+                  priority={true}
                   alt="day's playlist"
                   // className={styles.sidebarImg}
                   src="/img/playlist01.png"
@@ -35,6 +36,7 @@ const Sidebar = () => {
                 href="#"
               >
                 <Image
+                  priority={true}
                   alt="day's playlist"
                   className={styles.sidebarImg}
                   src="/img/playlist02.png"
@@ -49,6 +51,7 @@ const Sidebar = () => {
                 href="#"
               >
                 <Image
+                  priority={true}
                   alt="day's playlist"
                   className={styles.sidebarImg}
                   src="/img/playlist03.png"

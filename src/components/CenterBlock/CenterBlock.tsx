@@ -18,7 +18,7 @@ const CenterBlock = async () => {
         <h2 className={styles.centerblockHeader}>
           Треки
         </h2>
-        <Filter/>
+        <Filter tracks={tracks} />
         <Playlist tracks={tracks}/>
       </div> );
 }
