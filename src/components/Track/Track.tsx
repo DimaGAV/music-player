@@ -1,9 +1,9 @@
 import { PlaylistType } from "@/types/playlist";
-import styles from "./Track.module.css"
+import styles from "./Track.module.css";
 
 type TrackProps = {
-  track: PlaylistType
-} 
+  track: PlaylistType;
+};
 
 function formatTime(seconds: number) {
   const formattedMinutes = Math.floor(seconds / 60)
@@ -15,50 +15,42 @@ function formatTime(seconds: number) {
   return `${formattedMinutes}:${formattedSeconds}`;
 }
 
-const Track = ({track}: TrackProps) => {
+const Track = ({ track }: TrackProps) => {
+  const { name, author, album, duration_in_seconds } = track;
 
-const {name, author, album, duration_in_seconds} = track
-
-    return ( <div className={styles.playlistItem}>
-        <div className={styles.playlistTrack}>
-          <div className={styles.trackTitle}>
-            <div className={styles.trackTitleImage}>
-              <svg className={styles.trackTitleSvg}>
-                <use xlinkHref="img/icon/sprite.svg#icon-note" />
-              </svg>
-            </div>
-            <div className="track__title-text">
-              <span
-                className={styles.trackTitleLink}>
-                {name}
-                <span className={styles.trackTitleSpan} />
-              </span>
-            </div>
-          </div>
-          <div className={styles.trackAuthor}>
-            <span
-              className={styles.trackAuthorLink}
-            >
-              {author}
-            </span>
-          </div>
-          <div className={styles.trackAlbum}>
-            <span
-              className={styles.trackAlbumLink}
-            >
-              {album}
-            </span>
-          </div>
-          <div className="track__time">
-            <svg className={styles.trackTimeSvg}>
-              <use xlinkHref="img/icon/sprite.svg#icon-like" />
+  return (
+    <div className={styles.playlistItem}>
+      <div className={styles.playlistTrack}>
+        <div className={styles.trackTitle}>
+          <div className={styles.trackTitleImage}>
+            <svg className={styles.trackTitleSvg}>
+              <use xlinkHref="img/icon/sprite.svg#icon-note" />
             </svg>
-            <span className={styles.trackTimeText}>
-        {formatTime(duration_in_seconds)}
+          </div>
+          <div className="track__title-text">
+            <span className={styles.trackTitleLink}>
+              {name}
+              <span className={styles.trackTitleSpan} />
             </span>
           </div>
         </div>
-      </div> );
-}
- 
+        <div className={styles.trackAuthor}>
+          <span className={styles.trackAuthorLink}>{author}</span>
+        </div>
+        <div className={styles.trackAlbum}>
+          <span className={styles.trackAlbumLink}>{album}</span>
+        </div>
+        <div className="track__time">
+          <svg className={styles.trackTimeSvg}>
+            <use xlinkHref="img/icon/sprite.svg#icon-like" />
+          </svg>
+          <span className={styles.trackTimeText}>
+            {formatTime(duration_in_seconds)}
+          </span>
+        </div>
+      </div>
+    </div>
+  );
+};
+
 export default Track;

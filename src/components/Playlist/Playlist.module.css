@@ -20,7 +20,7 @@
     -ms-flex-direction: column;
     flex-direction: column;
     overflow: auto;
-    height: 900px;
+    height: 100vh;
 
     &::-webkit-scrollbar {
         display: none;

@@ -13,9 +13,9 @@
     margin-right: 15px;
 }
 
-/* .filterWrapper {
+.filterWrapper {
     position: relative;
-} */
+}
 
 .filterButton {
     font-style: normal;
@@ -26,6 +26,7 @@
     border-radius: 60px;
     padding: 6px 20px;
     cursor: pointer;
+    margin-right: 10px;
 
     &:not(:last-child) {
         margin-right: 10px;
@@ -47,9 +48,10 @@
 .filterList {
     width: 248px;
     max-height: 305px;
-    list-style: none;
-    margin: 0;
-    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 28px;
+    padding: 34px;
     position: absolute;
     background: #313131;
     border: none;
@@ -57,10 +59,34 @@
     z-index: 1000;
     overflow: auto;
     margin-top: 10px;
+
+    &::-webkit-scrollbar {
+        width: 4px;
+        /* ширина вертикальной полосы прокрутки */
+        height: 4px;
+        /* высота горизонтальной полосы прокрутки */
+    }
+
+    &::-webkit-scrollbar-thumb {
+        background-color: white;
+        /* цвет ползунка */
+        border-radius: 2px;
+        /* закругленные углы ползунка */
+    }
+
+    &::-webkit-scrollbar-track {
+        background: #4B4949;
+        /* цвет фона дорожки */
+    }
+
+    /* Скрытие стрелочек на полосе прокрутки */
+    &::-webkit-scrollbar-button {
+        display: none;
+        /* скрытие кнопок-стрелочек */
+    }
 }
 
 .filterListItem {
-    padding: 8px 16px;
     cursor: pointer;
 
     &:hover {
