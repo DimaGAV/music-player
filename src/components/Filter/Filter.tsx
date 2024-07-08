@@ -19,7 +19,6 @@ const handleFilter = (filterName:string) => {
 }
 
 const getUniqueAuthors = getUniqueValues(tracks, "author")
-// const getUniqueYears = getUniqueValues(tracks, "release_date")
 const getUniqueGenre = getUniqueValues(tracks, "genre")
 
     return ( <div className={styles.centerblockFilter}>
@@ -31,14 +30,16 @@ const getUniqueGenre = getUniqueValues(tracks, "genre")
         isActive={activeFilter === "исполнителю"}
         list={getUniqueAuthors}
         handleFilter={() => handleFilter("исполнителю")}/>
-        {/* <div className={styles.filterButton}>
-          году выпуска
-        </div> */}
-        <FilterItem title ="году выпуска" isActive={activeFilter === "году выпуска"} list={SORT_OPTIONS} handleFilter={() => handleFilter("году выпуска")}/>
-       {/*  <div className={styles.filterButton}>
-          жанру
-        </div> */}
-        <FilterItem title ="жанру" isActive={activeFilter === "жанру"} list={getUniqueGenre} handleFilter={() => handleFilter("жанру")}/>
+        <FilterItem
+        title ="году выпуска"
+        isActive={activeFilter === "году выпуска"}
+        list={SORT_OPTIONS}
+        handleFilter={() => handleFilter("году выпуска")}/>
+        <FilterItem
+        title ="жанру"
+        isActive={activeFilter === "жанру"}
+        list={getUniqueGenre}
+        handleFilter={() => handleFilter("жанру")}/>
       </div> );
 }
  

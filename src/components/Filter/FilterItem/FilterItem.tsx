@@ -9,16 +9,6 @@ type FilterItemProps = {
 
 const FilterItem = ({title, isActive, list, handleFilter }:FilterItemProps) => {
 
-/* const filters = [
-  {
-    title: "исполнителю",
-    key: "author",
-    list: getUniqueValues(tracks, "author"),
-  },
-  { title: "году выпуска", key: "release_date", list: SORT_OPTIONS },
-  { title: "жанру", key: "genre", list: getUniqueValues(tracks, "genre") },
-]; */
-
     return ( <div className={styles.filterWrapper}>
         <div onClick={handleFilter} className={styles.filterButton}>
         {title}
@@ -30,7 +20,6 @@ const FilterItem = ({title, isActive, list, handleFilter }:FilterItemProps) => {
                   {item}
                 </li>
             ))}
-        
         </ul>
       )}
     </div> );
