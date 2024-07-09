@@ -1,9 +1,18 @@
+"use client";
 import Controls from "@/components/Controls/Controls";
 import TrackPlay from "@/components/TrackPlay/TrackPlay";
 import Volume from "@/components/Volume/Volume";
 import styles from "./Bar.module.css";
+import { useCurrentTrack } from "@/contexts/CurrentTrackProvider";
 
 const Bar = () => {
+  const { currentTrack } = useCurrentTrack();
+
+  if (!currentTrack) {
+    return null;
+  }
+
+  const { author, album } = currentTrack;
   return (
     <div className={styles.bar}>
       <div className={styles.barContent}>
@@ -11,7 +20,7 @@ const Bar = () => {
         <div className={styles.barPlayerBlock}>
           <div className={styles.barPlayer}>
             <Controls />
-            <TrackPlay />
+            <TrackPlay author={author} album={album} />
           </div>
           <Volume />
         </div>

@@ -2,6 +2,7 @@ import Track from "@/components/Track/Track";
 import styles from "./Playlist.module.css";
 import classNames from "classnames";
 import { PlaylistType } from "@/types/playlist";
+import { useCurrentTrack } from "@/contexts/CurrentTrackProvider";
 
 type PlaylistProps = {
   tracks: PlaylistType[];
