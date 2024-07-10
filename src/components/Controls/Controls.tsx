@@ -1,6 +1,11 @@
 import styles from "./Controls.module.css";
 
-const Controls = () => {
+type ControlProps = {
+  isPlaying: boolean;
+  togglePlay: () => void;
+};
+
+const Controls = ({ isPlaying, togglePlay }: ControlProps) => {
   return (
     <div className={styles.playerControls}>
       <div className={styles.playerBtnPrev}>
@@ -8,10 +13,16 @@ const Controls = () => {
           <use xlinkHref="img/icon/sprite.svg#icon-prev" />
         </svg>
       </div>
-      <div className={styles.playerBtnPlay}>
-        <svg className={styles.playerBtnPlaySvg}>
-          <use xlinkHref="img/icon/sprite.svg#icon-play" />
-        </svg>
+      <div onClick={togglePlay} className={styles.playerBtnPlay}>
+        {isPlaying ? (
+          <svg className={styles.playerBtnPlaySvg}>
+            <use xlinkHref="img/icon/sprite.svg#icon-pause" />
+          </svg>
+        ) : (
+          <svg className={styles.playerBtnPlaySvg}>
+            <use xlinkHref="img/icon/sprite.svg#icon-play" />
+          </svg>
+        )}
       </div>
       <div className={styles.playerBtnNext}>
         <svg className={styles.playerBtnNextSvg}>
