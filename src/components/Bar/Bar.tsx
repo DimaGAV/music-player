@@ -4,7 +4,7 @@ import TrackPlay from "@/components/TrackPlay/TrackPlay";
 import Volume from "@/components/Volume/Volume";
 import styles from "./Bar.module.css";
 import { useCurrentTrack } from "@/contexts/CurrentTrackProvider";
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import ProgressBar from "../ProgressBar/ProgressBar";
 import { formatTime } from "@/utils/formatTime";
 
@@ -13,6 +13,7 @@ const Bar = () => {
 
   const [currentTime, setCurrentTime] = useState<number>(0);
   const [isPlaying, setIsPlaying] = useState<boolean>(false);
+  const [volume, setVolume] = useState<number>(0.5);
 
   const audioRef = useRef<HTMLAudioElement>(null);
 
@@ -34,6 +35,18 @@ const Bar = () => {
       audioRef.current.currentTime = Number(event.target.value);
     }
   };
+
+  const handleSeekVolume = (event: React.ChangeEvent<HTMLInputElement>) => {
+    if (audioRef.current) {
+      audioRef.current.volume = Number(event.target.value);
+    }
+  };
+
+  useEffect(() => {
+    if (audioRef.current) {
+      audioRef.current.volume = volume;
+    }
+  }, [volume]);
 
   if (!currentTrack) {
     return null;
@@ -63,7 +76,11 @@ const Bar = () => {
             <Controls isPlaying={isPlaying} togglePlay={togglePlay} />
             <TrackPlay author={author} album={album} />
           </div>
-          <Volume />
+          <Volume
+            step={0.01}
+            value={volume}
+            onChange={(e) => setVolume(e.target.value)}
+          />
         </div>
       </div>
     </div>
