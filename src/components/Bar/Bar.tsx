@@ -36,12 +36,6 @@ const Bar = () => {
     }
   };
 
-  const handleSeekVolume = (event: React.ChangeEvent<HTMLInputElement>) => {
-    if (audioRef.current) {
-      audioRef.current.volume = Number(event.target.value);
-    }
-  };
-
   useEffect(() => {
     if (audioRef.current) {
       audioRef.current.volume = volume;
@@ -79,7 +73,7 @@ const Bar = () => {
           <Volume
             step={0.01}
             value={volume}
-            onChange={(e) => setVolume(e.target.value)}
+            onChange={(e) => setVolume(Number(e.target.value))}
           />
         </div>
       </div>
