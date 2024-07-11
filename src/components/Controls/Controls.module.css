@@ -56,22 +56,6 @@
         stroke: #acacac;
         cursor: pointer;
     }
-
-    /* &:active svg {
-        fill: transparent;
-        stroke: #ffffff;
-        cursor: pointer;
-    } */
-}
-
-.playerBtnRepeatActive {
-    margin-right: 24px;
-    padding: 5px;
-    display: flex;
-    align-items: center;
-    fill: transparent;
-    stroke: #ffffff;
-    cursor: pointer;
 }
 
 .playerBtnRepeatSvg {

@@ -36,15 +36,16 @@ const Controls = ({
           <use xlinkHref="img/icon/sprite.svg#icon-next" />
         </svg>
       </div>
-      <div
-        onClick={toggleLoop}
-        className={
-          isLoop ? styles.playerBtnRepeatActive : styles.playerBtnRepeat
-        }
-      >
-        <svg className={styles.playerBtnRepeatSvg}>
-          <use xlinkHref="img/icon/sprite.svg#icon-repeat" />
-        </svg>
+      <div onClick={toggleLoop} className={styles.playerBtnRepeat}>
+        {!isLoop ? (
+          <svg className={styles.playerBtnRepeatSvg}>
+            <use xlinkHref="img/icon/sprite.svg#icon-repeat" />
+          </svg>
+        ) : (
+          <svg className={styles.playerBtnRepeatSvg}>
+            <use xlinkHref="img/icon/sprite.svg#icon-repeat-active" />
+          </svg>
+        )}
       </div>
       <div className={styles.playerBtnShuffle}>
         <svg className={styles.playerBtnShuffleSvg}>
