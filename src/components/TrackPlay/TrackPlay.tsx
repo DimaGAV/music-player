@@ -31,11 +31,11 @@ const TrackPlay = ({ author, album }: TrackPlayProps) => {
             <use xlinkHref="img/icon/sprite.svg#icon-like" />
           </svg>
         </div>
-        <div className={styles.trackPlayDislike}>
+        {/*  <div className={styles.trackPlayDislike}>
           <svg className={styles.trackPlayDislikeSvg}>
             <use xlinkHref="img/icon/sprite.svg#icon-dislike" />
           </svg>
-        </div>
+        </div> */}
       </div>
     </div>
   );

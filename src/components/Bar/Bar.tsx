@@ -15,6 +15,7 @@ const Bar = () => {
   const [currentTime, setCurrentTime] = useState<number>(0);
   const { isPlaying, setIsPlaying } = usePlayerState();
   const [volume, setVolume] = useState<number>(0.5);
+  const [isLoop, setIsLoop] = useState<boolean>(false);
 
   const audioRef = useRef<HTMLAudioElement>(null);
 
@@ -29,6 +30,17 @@ const Bar = () => {
       }
       setIsPlaying((prev) => !prev);
     }
+  };
+
+  const toggleLoop = () => {
+    if (audioRef.current) {
+      if (!isLoop) {
+        audioRef.current.loop = true;
+      } else {
+        audioRef.current.loop = false;
+      }
+    }
+    setIsLoop((prev) => !prev);
   };
 
   const handleSeek = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -68,7 +80,12 @@ const Bar = () => {
         />
         <div className={styles.barPlayerBlock}>
           <div className={styles.barPlayer}>
-            <Controls isPlaying={isPlaying} togglePlay={togglePlay} />
+            <Controls
+              isPlaying={isPlaying}
+              togglePlay={togglePlay}
+              isLoop={isLoop}
+              toggleLoop={toggleLoop}
+            />
             <TrackPlay author={author} album={album} />
           </div>
           <Volume

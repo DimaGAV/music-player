@@ -3,9 +3,16 @@ import styles from "./Controls.module.css";
 type ControlProps = {
   isPlaying: boolean;
   togglePlay: () => void;
+  isLoop: boolean;
+  toggleLoop: () => void;
 };
 
-const Controls = ({ isPlaying, togglePlay }: ControlProps) => {
+const Controls = ({
+  isPlaying,
+  togglePlay,
+  isLoop,
+  toggleLoop,
+}: ControlProps) => {
   return (
     <div className={styles.playerControls}>
       <div className={styles.playerBtnPrev}>
@@ -29,7 +36,12 @@ const Controls = ({ isPlaying, togglePlay }: ControlProps) => {
           <use xlinkHref="img/icon/sprite.svg#icon-next" />
         </svg>
       </div>
-      <div className={styles.playerBtnRepeat}>
+      <div
+        onClick={toggleLoop}
+        className={
+          isLoop ? styles.playerBtnRepeatActive : styles.playerBtnRepeat
+        }
+      >
         <svg className={styles.playerBtnRepeatSvg}>
           <use xlinkHref="img/icon/sprite.svg#icon-repeat" />
         </svg>
