@@ -3,20 +3,37 @@ import { PlaylistType } from "@/types/playlist";
 import styles from "./Track.module.css";
 import { useCurrentTrack } from "@/contexts/CurrentTrackProvider";
 import { formatTime } from "@/utils/formatTime";
+import { usePlayerState } from "@/contexts/PlayerStateContext";
+import { useEffect, useRef } from "react";
 
 type TrackProps = {
   track: PlaylistType;
 };
 
 const Track = ({ track }: TrackProps) => {
-  const { setCurrentTrack } = useCurrentTrack();
-  const { name, author, album, duration_in_seconds } = track;
+  const { currentTrack, setCurrentTrack } = useCurrentTrack();
+  const { name, author, album, duration_in_seconds, track_file } = track;
+  const { isPlaying, setIsPlaying } = usePlayerState();
+  const audioRef = useRef<HTMLAudioElement>(null);
 
   const handleTrackClick = () => {
     setCurrentTrack(track);
+    setIsPlaying(true);
   };
+
+  useEffect(() => {
+    if (audioRef.current) {
+      if (isPlaying && currentTrack?.track_file === track_file) {
+        audioRef.current.play();
+      } else {
+        audioRef.current.pause();
+      }
+    }
+  }, [isPlaying, currentTrack, track_file]);
+
   return (
     <div onClick={handleTrackClick} className={styles.playlistItem}>
+      <audio ref={audioRef} src={track_file} />
       <div className={styles.playlistTrack}>
         <div className={styles.trackTitle}>
           <div className={styles.trackTitleImage}>

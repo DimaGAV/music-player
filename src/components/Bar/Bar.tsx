@@ -7,12 +7,13 @@ import { useCurrentTrack } from "@/contexts/CurrentTrackProvider";
 import { useEffect, useRef, useState } from "react";
 import ProgressBar from "../ProgressBar/ProgressBar";
 import { formatTime } from "@/utils/formatTime";
+import { usePlayerState } from "@/contexts/PlayerStateContext";
 
 const Bar = () => {
   const { currentTrack } = useCurrentTrack();
 
   const [currentTime, setCurrentTime] = useState<number>(0);
-  const [isPlaying, setIsPlaying] = useState<boolean>(false);
+  const { isPlaying, setIsPlaying } = usePlayerState();
   const [volume, setVolume] = useState<number>(0.5);
 
   const audioRef = useRef<HTMLAudioElement>(null);

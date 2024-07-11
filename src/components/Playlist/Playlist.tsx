@@ -1,14 +1,19 @@
+"use client";
+
 import Track from "@/components/Track/Track";
 import styles from "./Playlist.module.css";
 import classNames from "classnames";
 import { PlaylistType } from "@/types/playlist";
-import { useCurrentTrack } from "@/contexts/CurrentTrackProvider";
 
 type PlaylistProps = {
   tracks: PlaylistType[];
 };
 
 const Playlist = ({ tracks }: PlaylistProps) => {
+  /* const handleTrackClick = (track: PlaylistType) => {
+    console.log(`Track clicked: ${track.name}`);
+  }; */
+
   return (
     <div className={styles.centerblockContent}>
       <div className={styles.contentTitle}>
@@ -29,7 +34,11 @@ const Playlist = ({ tracks }: PlaylistProps) => {
       </div>
       <div className={styles.contentPlaylist}>
         {tracks.map((track) => (
-          <Track key={track.id} track={track} />
+          <Track
+            key={track.id}
+            track={track}
+            // onClick={}
+          />
         ))}
       </div>
     </div>
