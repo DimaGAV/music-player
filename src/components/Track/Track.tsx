@@ -3,8 +3,8 @@ import { PlaylistType } from "@/types/playlist";
 import styles from "./Track.module.css";
 import { useCurrentTrack } from "@/contexts/CurrentTrackProvider";
 import { formatTime } from "@/utils/formatTime";
-// import { usePlayerState } from "@/contexts/PlayerStateContext";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef } from "react";
+import { usePlayerState } from "@/contexts/PlayerStateContext";
 
 type TrackProps = {
   track: PlaylistType;
@@ -13,7 +13,7 @@ type TrackProps = {
 const Track = ({ track }: TrackProps) => {
   const { currentTrack, setCurrentTrack } = useCurrentTrack();
   const { name, author, album, duration_in_seconds, track_file } = track;
-  // const { isPlaying, setIsPlaying } = usePlayerState();
+  // const { setIsPlaying } = usePlayerState();
   const audioRef = useRef<HTMLAudioElement>(null);
 
   const handleTrackClick = () => {
@@ -21,19 +21,19 @@ const Track = ({ track }: TrackProps) => {
     // setIsPlaying(true);
   };
 
-  /*  useEffect(() => {
+  useEffect(() => {
     if (audioRef.current) {
-      if (isPlaying && currentTrack?.track_file === track_file) {
+      if (currentTrack?.track_file === track_file) {
         audioRef.current.play();
       } else {
         audioRef.current.pause();
       }
     }
-  }, [isPlaying, currentTrack, track_file]); */
+  }, [currentTrack, track_file]);
 
   return (
     <div className={styles.playlistItem}>
-      {/* <audio ref={audioRef} src={track_file} /> */}
+      <audio ref={audioRef} src={track_file} />
       <div className={styles.playlistTrack}>
         <div onClick={handleTrackClick} className={styles.trackTitle}>
           <div className={styles.trackTitleImage}>

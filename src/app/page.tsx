@@ -7,12 +7,12 @@ export default function Home() {
   return (
     <div className="wrapper">
       <div className="container">
-        <CurrentTrackProvider>
-          <PlayerStateProvider>
+        <PlayerStateProvider>
+          <CurrentTrackProvider>
             <Main />
             <Bar />
-          </PlayerStateProvider>
-        </CurrentTrackProvider>
+          </CurrentTrackProvider>
+        </PlayerStateProvider>
       </div>
     </div>
   );
