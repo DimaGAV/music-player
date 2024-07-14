@@ -15,7 +15,10 @@ const Controls = ({
 }: ControlProps) => {
   return (
     <div className={styles.playerControls}>
-      <div className={styles.playerBtnPrev}>
+      <div
+        onClick={() => alert("Ещё не реализовано")}
+        className={styles.playerBtnPrev}
+      >
         <svg className={styles.playerBtnPrevSvg}>
           <use xlinkHref="img/icon/sprite.svg#icon-prev" />
         </svg>
@@ -31,7 +34,10 @@ const Controls = ({
           </svg>
         )}
       </div>
-      <div className={styles.playerBtnNext}>
+      <div
+        onClick={() => alert("Ещё не реализовано")}
+        className={styles.playerBtnNext}
+      >
         <svg className={styles.playerBtnNextSvg}>
           <use xlinkHref="img/icon/sprite.svg#icon-next" />
         </svg>
@@ -47,7 +53,10 @@ const Controls = ({
           </svg>
         )}
       </div>
-      <div className={styles.playerBtnShuffle}>
+      <div
+        onClick={() => alert("Ещё не реализовано")}
+        className={styles.playerBtnShuffle}
+      >
         <svg className={styles.playerBtnShuffleSvg}>
           <use xlinkHref="img/icon/sprite.svg#icon-shuffle" />
         </svg>
