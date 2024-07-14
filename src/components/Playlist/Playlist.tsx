@@ -10,10 +10,6 @@ type PlaylistProps = {
 };
 
 const Playlist = ({ tracks }: PlaylistProps) => {
-  /* const handleTrackClick = (track: PlaylistType) => {
-    console.log(`Track clicked: ${track.name}`);
-  }; */
-
   return (
     <div className={styles.centerblockContent}>
       <div className={styles.contentTitle}>
@@ -34,11 +30,7 @@ const Playlist = ({ tracks }: PlaylistProps) => {
       </div>
       <div className={styles.contentPlaylist}>
         {tracks.map((track) => (
-          <Track
-            key={track.id}
-            track={track}
-            // onClick={}
-          />
+          <Track key={track.id} track={track} />
         ))}
       </div>
     </div>
