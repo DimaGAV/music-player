@@ -56,6 +56,12 @@
         stroke: #acacac;
         cursor: pointer;
     }
+
+    &:active svg {
+        fill: transparent;
+        stroke: #ffffff;
+        cursor: pointer;
+    }
 }
 
 .playerBtnRepeatSvg {
