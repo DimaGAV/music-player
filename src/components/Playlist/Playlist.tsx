@@ -1,4 +1,4 @@
-"use client";
+// "use client";
 
 import Track from "@/components/Track/Track";
 import styles from "./Playlist.module.css";

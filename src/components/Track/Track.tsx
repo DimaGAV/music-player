@@ -1,20 +1,25 @@
 "use client";
+
 import { PlaylistType } from "@/types/playlist";
 import styles from "./Track.module.css";
 import { useCurrentTrack } from "@/contexts/CurrentTrackProvider";
 import { formatTime } from "@/utils/formatTime";
 import { usePlayerState } from "@/contexts/PlayerStateContext";
+/* import { useAppDispatch } from "@/hooks";
+import { setCurrentTrack } from "@/store/features/playlistSlice"; */
 
 type TrackProps = {
   track: PlaylistType;
 };
 
 const Track = ({ track }: TrackProps) => {
+  // const dispatch = useAppDispatch();
   const { setCurrentTrack } = useCurrentTrack();
   const { setIsPlaying } = usePlayerState();
   const { name, author, album, duration_in_seconds } = track;
 
   const handleTrackClick = () => {
+    // dispatch(setCurrentTrack(track));
     setCurrentTrack(track);
     setIsPlaying(true);
   };

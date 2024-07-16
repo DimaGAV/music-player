@@ -3,10 +3,12 @@ import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 type PlaylistStateType =  {
   currentTrack: null | PlaylistType;
+  playlist: PlaylistType[]
 }
 
 const initialState: PlaylistStateType = {
   currentTrack: null,
+  playlist: []
 };
 
 const playlistSlice = createSlice({
