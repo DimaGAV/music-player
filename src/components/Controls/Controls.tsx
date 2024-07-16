@@ -1,29 +1,62 @@
 import styles from "./Controls.module.css";
 
-const Controls = () => {
+type ControlProps = {
+  isPlaying: boolean;
+  togglePlay: () => void;
+  isLoop: boolean;
+  toggleLoop: () => void;
+};
+
+const Controls = ({
+  isPlaying,
+  togglePlay,
+  isLoop,
+  toggleLoop,
+}: ControlProps) => {
   return (
     <div className={styles.playerControls}>
-      <div className={styles.playerBtnPrev}>
+      <div
+        onClick={() => alert("Ещё не реализовано")}
+        className={styles.playerBtnPrev}
+      >
         <svg className={styles.playerBtnPrevSvg}>
           <use xlinkHref="img/icon/sprite.svg#icon-prev" />
         </svg>
       </div>
-      <div className={styles.playerBtnPlay}>
-        <svg className={styles.playerBtnPlaySvg}>
-          <use xlinkHref="img/icon/sprite.svg#icon-play" />
-        </svg>
+      <div onClick={togglePlay} className={styles.playerBtnPlay}>
+        {isPlaying ? (
+          <svg className={styles.playerBtnPlaySvg}>
+            <use xlinkHref="img/icon/sprite.svg#icon-pause" />
+          </svg>
+        ) : (
+          <svg className={styles.playerBtnPlaySvg}>
+            <use xlinkHref="img/icon/sprite.svg#icon-play" />
+          </svg>
+        )}
       </div>
-      <div className={styles.playerBtnNext}>
+      <div
+        onClick={() => alert("Ещё не реализовано")}
+        className={styles.playerBtnNext}
+      >
         <svg className={styles.playerBtnNextSvg}>
           <use xlinkHref="img/icon/sprite.svg#icon-next" />
         </svg>
       </div>
-      <div className={styles.playerBtnRepeat}>
-        <svg className={styles.playerBtnRepeatSvg}>
-          <use xlinkHref="img/icon/sprite.svg#icon-repeat" />
-        </svg>
+      <div onClick={toggleLoop} className={styles.playerBtnRepeat}>
+        {!isLoop ? (
+          <svg className={styles.playerBtnRepeatSvg}>
+            <use xlinkHref="img/icon/sprite.svg#icon-repeat" />
+          </svg>
+        ) : (
+          <svg className={styles.playerBtnRepeatSvg}>
+            <use xlinkHref="img/icon/sprite.svg#icon-repeat-active" />
+          </svg>
+        )}
       </div>
-      <div className={styles.playerBtnShuffle}>
+      <div
+        onClick={() => alert("Ещё не реализовано")}
+        className={styles.playerBtnShuffle}
+      >
         <svg className={styles.playerBtnShuffleSvg}>
           <use xlinkHref="img/icon/sprite.svg#icon-shuffle" />
         </svg>

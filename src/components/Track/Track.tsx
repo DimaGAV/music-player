@@ -1,27 +1,28 @@
+"use client";
 import { PlaylistType } from "@/types/playlist";
 import styles from "./Track.module.css";
+import { useCurrentTrack } from "@/contexts/CurrentTrackProvider";
+import { formatTime } from "@/utils/formatTime";
+import { usePlayerState } from "@/contexts/PlayerStateContext";
 
 type TrackProps = {
   track: PlaylistType;
 };
 
-function formatTime(seconds: number) {
-  const formattedMinutes = Math.floor(seconds / 60)
-    .toString()
-    .padStart(2, "0");
-  const formattedSeconds = Math.floor(seconds % 60)
-    .toString()
-    .padStart(2, "0");
-  return `${formattedMinutes}:${formattedSeconds}`;
-}
-
 const Track = ({ track }: TrackProps) => {
+  const { setCurrentTrack } = useCurrentTrack();
+  const { setIsPlaying } = usePlayerState();
   const { name, author, album, duration_in_seconds } = track;
+
+  const handleTrackClick = () => {
+    setCurrentTrack(track);
+    setIsPlaying(true);
+  };
 
   return (
     <div className={styles.playlistItem}>
       <div className={styles.playlistTrack}>
-        <div className={styles.trackTitle}>
+        <div onClick={handleTrackClick} className={styles.trackTitle}>
           <div className={styles.trackTitleImage}>
             <svg className={styles.trackTitleSvg}>
               <use xlinkHref="img/icon/sprite.svg#icon-note" />

@@ -1,3 +1,5 @@
+"use client";
+
 import Track from "@/components/Track/Track";
 import styles from "./Playlist.module.css";
 import classNames from "classnames";

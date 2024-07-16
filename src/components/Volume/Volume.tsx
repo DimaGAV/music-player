@@ -1,6 +1,22 @@
+import { useRef } from "react";
 import styles from "./Volume.module.css";
+import { useCurrentTrack } from "@/contexts/CurrentTrackProvider";
 
-const Volume = () => {
+type VolumeProps = {
+  step: number;
+  value: number;
+  onChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
+};
+
+const Volume = ({ step, value, onChange }: VolumeProps) => {
+  const { currentTrack } = useCurrentTrack();
+
+  const audioRef = useRef<HTMLAudioElement>(null);
+
+  if (!currentTrack) {
+    return null;
+  }
+
   return (
     <div className={styles.barVolumeBlock}>
       <div className={styles.volumeContent}>
@@ -10,7 +26,17 @@ const Volume = () => {
           </svg>
         </div>
         <div className={styles.volumeProgress}>
-          <input className={styles.volumeProgress} name="range" type="range" />
+          <audio ref={audioRef} src={currentTrack.track_file}></audio>
+          <input
+            className={styles.volumeProgress}
+            name="range"
+            type="range"
+            min={0}
+            max={1}
+            step={step}
+            value={value}
+            onChange={onChange}
+          />
         </div>
       </div>
     </div>
