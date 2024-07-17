@@ -3,21 +3,25 @@ import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 type PlaylistStateType =  {
   currentTrack: null | PlaylistType;
-  playlist: PlaylistType[]
+  playlist: PlaylistType[];
+  // shuffledPlaylist: 
 }
 
 const initialState: PlaylistStateType = {
   currentTrack: null,
-  playlist: []
+  playlist: [],
+  // shuffledPlaylist: []
 };
 
 const playlistSlice = createSlice({
   name: "playlist",
   initialState,
   reducers: {
-    setCurrentTrack: (state, action: PayloadAction<PlaylistType>) => {
-      state.currentTrack = action.payload;
+    setCurrentTrack: (state, action: PayloadAction<{track: PlaylistType, tracks: PlaylistType[]}>) => {
+      state.currentTrack = action.payload.track;
+      state.playlist = action.payload.tracks
     },
+    // setNextTrack
   },
 });
 
