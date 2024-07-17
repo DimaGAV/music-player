@@ -14,7 +14,6 @@ type TrackProps = {
 };
 
 const Track = ({ track, tracks }: TrackProps) => {
-  // const currentTrack = useAppSelector((state) => state.playlist.currentTrack);
   const { name, author, album, duration_in_seconds } = track;
 
   const dispatch = useAppDispatch();

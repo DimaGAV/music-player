@@ -1,4 +1,4 @@
-import { useAppDispatch } from "@/hooks";
+import { useAppDispatch, useAppSelector } from "@/hooks";
 import styles from "./Controls.module.css";
 import {
   setIsShuffle,
@@ -19,6 +19,8 @@ const Controls = ({
   isLoop,
   toggleLoop,
 }: ControlProps) => {
+  const isShuffle = useAppSelector((state) => state.playlist.isShuffle);
+
   const dispatch = useAppDispatch();
 
   return (
@@ -61,13 +63,20 @@ const Controls = ({
           </svg>
         )}
       </div>
+
       <div
-        onClick={() => dispatch(setIsShuffle(true))}
+        onClick={() => dispatch(setIsShuffle(!isShuffle))}
         className={styles.playerBtnShuffle}
       >
-        <svg className={styles.playerBtnShuffleSvg}>
-          <use xlinkHref="img/icon/sprite.svg#icon-shuffle" />
-        </svg>
+        {!isShuffle ? (
+          <svg className={styles.playerBtnShuffleSvg}>
+            <use xlinkHref="img/icon/sprite.svg#icon-shuffle" />
+          </svg>
+        ) : (
+          <svg className={styles.playerBtnShuffleSvg}>
+            <use xlinkHref="img/icon/sprite.svg#icon-shuffle-active" />
+          </svg>
+        )}
       </div>
     </div>
   );
