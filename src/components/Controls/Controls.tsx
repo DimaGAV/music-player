@@ -1,4 +1,10 @@
+import { useAppDispatch } from "@/hooks";
 import styles from "./Controls.module.css";
+import {
+  setIsShuffle,
+  setNextTrack,
+  setPrevTrack,
+} from "@/store/features/playlistSlice";
 
 type ControlProps = {
   isPlaying: boolean;
@@ -13,10 +19,12 @@ const Controls = ({
   isLoop,
   toggleLoop,
 }: ControlProps) => {
+  const dispatch = useAppDispatch();
+
   return (
     <div className={styles.playerControls}>
       <div
-        onClick={() => alert("Ещё не реализовано")}
+        onClick={() => dispatch(setPrevTrack())}
         className={styles.playerBtnPrev}
       >
         <svg className={styles.playerBtnPrevSvg}>
@@ -35,7 +43,7 @@ const Controls = ({
         )}
       </div>
       <div
-        onClick={() => alert("Ещё не реализовано")}
+        onClick={() => dispatch(setNextTrack())}
         className={styles.playerBtnNext}
       >
         <svg className={styles.playerBtnNextSvg}>
@@ -54,7 +62,7 @@ const Controls = ({
         )}
       </div>
       <div
-        onClick={() => alert("Ещё не реализовано")}
+        onClick={() => dispatch(setIsShuffle(true))}
         className={styles.playerBtnShuffle}
       >
         <svg className={styles.playerBtnShuffleSvg}>

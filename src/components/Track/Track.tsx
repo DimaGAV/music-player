@@ -5,7 +5,7 @@ import styles from "./Track.module.css";
 // import { useCurrentTrack } from "@/contexts/CurrentTrackProvider";
 import { formatTime } from "@/utils/formatTime";
 import { usePlayerState } from "@/contexts/PlayerStateContext";
-import { useAppDispatch } from "@/hooks";
+import { useAppDispatch, useAppSelector } from "@/hooks";
 import { setCurrentTrack } from "@/store/features/playlistSlice";
 
 type TrackProps = {
@@ -14,10 +14,12 @@ type TrackProps = {
 };
 
 const Track = ({ track, tracks }: TrackProps) => {
+  // const currentTrack = useAppSelector((state) => state.playlist.currentTrack);
+  const { name, author, album, duration_in_seconds } = track;
+
   const dispatch = useAppDispatch();
   // const { setCurrentTrack } = useCurrentTrack();
   const { setIsPlaying } = usePlayerState();
-  const { name, author, album, duration_in_seconds } = track;
 
   const handleTrackClick = () => {
     dispatch(setCurrentTrack({ track, tracks }));
