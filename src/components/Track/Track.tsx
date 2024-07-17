@@ -31,6 +31,7 @@ const Track = ({ track, tracks }: TrackProps) => {
       <div className={styles.playlistTrack}>
         <div onClick={handleTrackClick} className={styles.trackTitle}>
           <div className={styles.trackTitleImage}>
+            {/* <div className={styles.playingDot}> */}
             <svg className={styles.trackTitleSvg}>
               <use xlinkHref="img/icon/sprite.svg#icon-note" />
             </svg>
