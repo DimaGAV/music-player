@@ -4,12 +4,15 @@ import Track from "@/components/Track/Track";
 import styles from "./Playlist.module.css";
 import classNames from "classnames";
 import { PlaylistType } from "@/types/playlist";
+// import { useAppDispatch } from "@/hooks";
 
 type PlaylistProps = {
   tracks: PlaylistType[];
 };
 
 const Playlist = ({ tracks }: PlaylistProps) => {
+  // const dispatch = useAppDispatch();
+
   return (
     <div className={styles.centerblockContent}>
       <div className={styles.contentTitle}>

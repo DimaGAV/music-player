@@ -3,14 +3,16 @@ import Controls from "@/components/Controls/Controls";
 import TrackPlay from "@/components/TrackPlay/TrackPlay";
 import Volume from "@/components/Volume/Volume";
 import styles from "./Bar.module.css";
-import { useCurrentTrack } from "@/contexts/CurrentTrackProvider";
+// import { useCurrentTrack } from "@/contexts/CurrentTrackProvider";
 import { useEffect, useRef, useState } from "react";
 import ProgressBar from "../ProgressBar/ProgressBar";
 import { formatTime } from "@/utils/formatTime";
 import { usePlayerState } from "@/contexts/PlayerStateContext";
+import { useAppSelector } from "@/hooks";
 
 const Bar = () => {
-  const { currentTrack } = useCurrentTrack();
+  const currentTrack = useAppSelector((state) => state.playlist.currentTrack);
+  // const { currentTrack } = useCurrentTrack();
 
   const [currentTime, setCurrentTime] = useState<number>(0);
   const { isPlaying, setIsPlaying } = usePlayerState();
