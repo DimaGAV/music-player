@@ -2,7 +2,6 @@
 
 import { PlaylistType } from "@/types/playlist";
 import styles from "./Track.module.css";
-// import { useCurrentTrack } from "@/contexts/CurrentTrackProvider";
 import { formatTime } from "@/utils/formatTime";
 import { usePlayerState } from "@/contexts/PlayerStateContext";
 import { useAppDispatch, useAppSelector } from "@/hooks";
@@ -17,24 +16,30 @@ const Track = ({ track, tracks }: TrackProps) => {
   const { name, author, album, duration_in_seconds } = track;
 
   const dispatch = useAppDispatch();
-  // const { setCurrentTrack } = useCurrentTrack();
-  const { setIsPlaying } = usePlayerState();
+  const { isPlaying, setIsPlaying } = usePlayerState();
+  const currentTrack = useAppSelector((state) => state.playlist.currentTrack);
 
   const handleTrackClick = () => {
     dispatch(setCurrentTrack({ track, tracks }));
-    // setCurrentTrack(track);
     setIsPlaying(true);
   };
+
+  const isCurrentTrack = currentTrack?.id === track.id;
 
   return (
     <div className={styles.playlistItem}>
       <div className={styles.playlistTrack}>
         <div onClick={handleTrackClick} className={styles.trackTitle}>
           <div className={styles.trackTitleImage}>
-            {/* <div className={styles.playingDot}> */}
-            <svg className={styles.trackTitleSvg}>
-              <use xlinkHref="img/icon/sprite.svg#icon-note" />
-            </svg>
+            {isCurrentTrack ? (
+              <div
+                className={isPlaying ? styles.playingDot : styles.activeDot}
+              />
+            ) : (
+              <svg className={styles.trackTitleSvg}>
+                <use xlinkHref="img/icon/sprite.svg#icon-note" />
+              </svg>
+            )}
           </div>
           <div className="track__title-text">
             <span className={styles.trackTitleLink}>
