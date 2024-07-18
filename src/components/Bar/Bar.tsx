@@ -3,7 +3,7 @@ import Controls from "@/components/Controls/Controls";
 import TrackPlay from "@/components/TrackPlay/TrackPlay";
 import Volume from "@/components/Volume/Volume";
 import styles from "./Bar.module.css";
-import { useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import ProgressBar from "../ProgressBar/ProgressBar";
 import { formatTime } from "@/utils/formatTime";
 import { usePlayerState } from "@/contexts/PlayerStateContext";
@@ -11,13 +11,13 @@ import { useAppSelector } from "@/hooks";
 
 const Bar = () => {
   const currentTrack = useAppSelector((state) => state.playlist.currentTrack);
-
-  // const currentTrackIndex = playlist.findIndex((track) => track.id === state.currentTrack?.id)
+  const playlist = useAppSelector((state) => state.playlist.playlist);
 
   const [currentTime, setCurrentTime] = useState<number>(0);
   const { isPlaying, setIsPlaying } = usePlayerState();
   const [volume, setVolume] = useState<number>(0.5);
   const [isLoop, setIsLoop] = useState<boolean>(false);
+  const [currentTrackIndex, setCurrentTrackIndex] = useState<number>(0);
 
   const audioRef = useRef<HTMLAudioElement>(null);
 
@@ -57,34 +57,34 @@ const Bar = () => {
     }
   }, [volume]);
 
+  const handleEnded = useCallback(() => {
+    setCurrentTrackIndex((prevIndex) => {
+      if (prevIndex < playlist.length - 1) {
+        return prevIndex + 1;
+      } else {
+        return 0;
+      }
+    });
+  }, [playlist.length]);
+
+  useEffect(() => {
+    if (audioRef.current) {
+      const audio = audioRef.current;
+      audio.src = playlist[currentTrackIndex].track_file;
+      audio.play();
+
+      audio.addEventListener("ended", handleEnded);
+      return () => {
+        audio.removeEventListener("ended", handleEnded);
+      };
+    }
+  }, [setCurrentTrackIndex, playlist, currentTrackIndex, handleEnded]);
+
   if (!currentTrack) {
     return null;
   }
 
   const { author, album } = currentTrack;
-
-  /*   const [currentTrackIndex, setCurrentTrackIndex] = useState<number>(0);
-
-  const handleEnded = () => {
-      if (currentTrackIndex < tracks.length - 1) {
-          setCurrentTrackIndex(currentTrackIndex + 1);
-      } else {
-          setCurrentTrackIndex(0);
-      }
-  };
-
-  useEffect(() => {
-    
-      const audio = audioRef.current;
-      audio.src = tracks[currentTrackIndex].url;
-      audio.addEventListener('ended', handleEnded);
-
-      audio.play();
-
-      return () => {
-          audio.removeEventListener('ended', handleEnded);
-      };
-  }, [currentTrackIndex, playlist]); */
 
   return (
     <div className={styles.bar}>
