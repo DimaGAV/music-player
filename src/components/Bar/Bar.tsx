@@ -78,13 +78,14 @@ const Bar = () => {
         audio.removeEventListener("ended", handleEnded);
       };
     }
-  }, [setCurrentTrackIndex, playlist, currentTrackIndex, handleEnded]);
+  }, [playlist, currentTrackIndex, handleEnded]);
 
   if (!currentTrack) {
     return null;
   }
 
   const { author, album } = currentTrack;
+  console.log(currentTrack);
 
   return (
     <div className={styles.bar}>
