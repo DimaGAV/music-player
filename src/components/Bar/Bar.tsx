@@ -7,7 +7,8 @@ import { useCallback, useEffect, useRef, useState } from "react";
 import ProgressBar from "../ProgressBar/ProgressBar";
 import { formatTime } from "@/utils/formatTime";
 import { usePlayerState } from "@/contexts/PlayerStateContext";
-import { useAppSelector } from "@/hooks";
+import { useAppDispatch, useAppSelector } from "@/hooks";
+import { setNextTrack } from "@/store/features/playlistSlice";
 
 const Bar = () => {
   const currentTrack = useAppSelector((state) => state.playlist.currentTrack);
@@ -57,15 +58,11 @@ const Bar = () => {
     }
   }, [volume]);
 
+  const dispatch = useAppDispatch();
+
   const handleEnded = useCallback(() => {
-    setCurrentTrackIndex((prevIndex) => {
-      if (prevIndex < playlist.length - 1) {
-        return prevIndex + 1;
-      } else {
-        return 0;
-      }
-    });
-  }, [playlist.length]);
+    dispatch(setNextTrack());
+  }, [dispatch]);
 
   useEffect(() => {
     if (audioRef.current) {
