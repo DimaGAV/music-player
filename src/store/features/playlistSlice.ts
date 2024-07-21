@@ -1,18 +1,34 @@
+import { fetchFavoriteTracks } from "@/api/playlist";
 import { PlaylistType } from "@/types/playlist";
-import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { access } from "fs";
+
+export const getFavoriteTrack = createAsyncThunk(
+  "playlist/getFavoriteTracks",
+  async (tokens: {
+    access: string,
+    refresh: string
+  }) => {
+    const favoriteTracks = await fetchFavoriteTracks(tokens)
+    return favoriteTracks
+  }
+)
 
 type PlaylistStateType =  {
   currentTrack: null | PlaylistType;
   playlist: PlaylistType[];
   shuffledPlaylist: PlaylistType[];
   isShuffle: boolean
+  likedPlaylist: PlaylistType[];
+
 }
 
 const initialState: PlaylistStateType = {
   currentTrack: null,
   playlist: [],
   shuffledPlaylist: [],
-  isShuffle: false
+  isShuffle: false,
+  likedPlaylist: [],
 };
 
 const playlistSlice = createSlice({
@@ -42,9 +58,23 @@ if (newTrack) {
     },
     setIsShuffle: (state, action: PayloadAction<boolean>) => {
 state.isShuffle = action.payload
+    },
+    setLikeTrack: (state, action: PayloadAction<number>)=> {
+      const trackId = action.payload
+      // добавить в likedPlaylist
+    },
+    setDisLikeTrack: (state, action: PayloadAction<number>)=> {
+      const trackId = action.payload
+      // убрать из likedPlaylist
     }
+  },
+  extraReducers(builder) {
+    builder.addCase(getFavoriteTrack.fulfilled, (state, action) => {
+      state.likedPlaylist = action.payload
+    })
+    builder.addCase(getFavoriteTrack.rejected, (state) => {})
   },
 });
 
-export const { setCurrentTrack, setNextTrack, setPrevTrack, setIsShuffle } = playlistSlice.actions;
+export const { setCurrentTrack, setNextTrack, setPrevTrack, setIsShuffle, setDisLikeTrack, setLikeTrack } = playlistSlice.actions;
 export const playlistReducer = playlistSlice.reducer;

@@ -1,3 +1,5 @@
+import { fetchWithAuth } from "@/utils/fetchWithAuth";
+const BASE_URL = "https://skypro-music-api.skyeng.tech/"
 const API_URL = "https://skypro-music-api.skyeng.tech/catalog/track/all/"
 
 export async function getPlaylist() {
@@ -7,3 +9,73 @@ export async function getPlaylist() {
     }
     return res.json()
 }
+
+export async function likeTrack(
+    {
+        trackId,
+        access,
+        refresh
+    }: {
+        trackId: number;
+        access: string;
+        refresh: string;
+    }
+) {
+    const res = await fetchWithAuth(
+        BASE_URL + `/track/${trackId}/favorite/`,
+        {
+          method: "POST",
+          headers: {
+            Authorization: `Bearer ${access}`,
+          },
+        },
+        refresh
+      );
+    
+      return res.json();
+    }
+
+    export async function disLikeTrack(
+        {
+            trackId,
+            access,
+            refresh
+        }: {
+            trackId: number;
+            access: string;
+            refresh: string;
+        }
+    ) {
+        const res = await fetchWithAuth(
+            BASE_URL + `/track/${trackId}/favorite/`,
+            {
+              method: "DELETE",
+              headers: {
+                Authorization: `Bearer ${access}`,
+              },
+            },
+            refresh
+          );
+        
+          return res.json();
+        }
+
+    export async function fetchFavoriteTracks({
+        access,
+        refresh
+    }: {
+        access:string;
+        refresh: string
+    }) {
+        const res = await fetchWithAuth(
+            BASE_URL + `/track/favorite/all/`,
+            {
+                method: "GET",
+                headers: {
+                    Authorization: `Bearer ${access}`,
+                },
+            },
+            refresh
+        )
+      return res.json();
+    }
