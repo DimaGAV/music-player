@@ -1,5 +1,3 @@
-"use client";
-
 import Track from "@/components/Track/Track";
 import styles from "./Playlist.module.css";
 import classNames from "classnames";
@@ -30,7 +28,7 @@ const Playlist = ({ tracks }: PlaylistProps) => {
       </div>
       <div className={styles.contentPlaylist}>
         {tracks.map((track) => (
-          <Track key={track.id} track={track} />
+          <Track key={track.id} track={track} tracks={tracks} />
         ))}
       </div>
     </div>

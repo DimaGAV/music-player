@@ -3,19 +3,22 @@ import Controls from "@/components/Controls/Controls";
 import TrackPlay from "@/components/TrackPlay/TrackPlay";
 import Volume from "@/components/Volume/Volume";
 import styles from "./Bar.module.css";
-import { useCurrentTrack } from "@/contexts/CurrentTrackProvider";
-import { useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import ProgressBar from "../ProgressBar/ProgressBar";
 import { formatTime } from "@/utils/formatTime";
 import { usePlayerState } from "@/contexts/PlayerStateContext";
+import { useAppDispatch, useAppSelector } from "@/hooks";
+import { setNextTrack } from "@/store/features/playlistSlice";
 
 const Bar = () => {
-  const { currentTrack } = useCurrentTrack();
+  const currentTrack = useAppSelector((state) => state.playlist.currentTrack);
+  const playlist = useAppSelector((state) => state.playlist.playlist);
 
   const [currentTime, setCurrentTime] = useState<number>(0);
   const { isPlaying, setIsPlaying } = usePlayerState();
   const [volume, setVolume] = useState<number>(0.5);
   const [isLoop, setIsLoop] = useState<boolean>(false);
+  const [currentTrackIndex, setCurrentTrackIndex] = useState<number>(0);
 
   const audioRef = useRef<HTMLAudioElement>(null);
 
@@ -55,11 +58,31 @@ const Bar = () => {
     }
   }, [volume]);
 
+  const dispatch = useAppDispatch();
+
+  const handleEnded = useCallback(() => {
+    dispatch(setNextTrack());
+  }, [dispatch]);
+
+  useEffect(() => {
+    if (audioRef.current) {
+      const audio = audioRef.current;
+      audio.src = playlist[currentTrackIndex].track_file;
+      audio.play();
+
+      audio.addEventListener("ended", handleEnded);
+      return () => {
+        audio.removeEventListener("ended", handleEnded);
+      };
+    }
+  }, [playlist, currentTrackIndex, handleEnded]);
+
   if (!currentTrack) {
     return null;
   }
 
   const { author, album } = currentTrack;
+  console.log(currentTrack);
 
   return (
     <div className={styles.bar}>

@@ -1,6 +1,7 @@
 import { useRef } from "react";
 import styles from "./Volume.module.css";
-import { useCurrentTrack } from "@/contexts/CurrentTrackProvider";
+import { useAppSelector } from "@/hooks";
+// import { useCurrentTrack } from "@/contexts/CurrentTrackProvider";
 
 type VolumeProps = {
   step: number;
@@ -9,7 +10,8 @@ type VolumeProps = {
 };
 
 const Volume = ({ step, value, onChange }: VolumeProps) => {
-  const { currentTrack } = useCurrentTrack();
+  // const { currentTrack } = useCurrentTrack();
+  const currentTrack = useAppSelector((state) => state.playlist.currentTrack);
 
   const audioRef = useRef<HTMLAudioElement>(null);
 
