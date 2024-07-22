@@ -1,11 +1,15 @@
+import useLikeTrack from "@/hooks/useLikeTrack";
 import styles from "./TrackPlay.module.css";
 
 type TrackPlayProps = {
   author: string;
   album: string;
+  id: number;
 };
 
-const TrackPlay = ({ author, album }: TrackPlayProps) => {
+const TrackPlay = ({ author, album, id }: TrackPlayProps) => {
+  const { isLiked, handleLike } = useLikeTrack(id);
+
   return (
     <div className={styles.playerTrackPlay}>
       <div className={styles.trackPlayContain}>
@@ -26,10 +30,16 @@ const TrackPlay = ({ author, album }: TrackPlayProps) => {
         </div>
       </div>
       <div className={styles.trackPlayLikeDis}>
-        <div className={styles.trackPlayLike}>
-          <svg className={styles.trackPlayLikeSvg}>
-            <use xlinkHref="img/icon/sprite.svg#icon-like" />
-          </svg>
+        <div className={styles.trackPlayLike} onClick={handleLike}>
+          {isLiked ? (
+            <svg className={styles.trackPlayLikeSvg}>
+              <use xlinkHref="img/icon/sprite.svg#icon-like" />
+            </svg>
+          ) : (
+            <svg className={styles.trackPlayLikeSvg}>
+              <use xlinkHref="img/icon/sprite.svg#icon-dislike" />
+            </svg>
+          )}
         </div>
       </div>
     </div>

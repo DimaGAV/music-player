@@ -81,7 +81,7 @@ const Bar = () => {
     return null;
   }
 
-  const { author, album } = currentTrack;
+  const { author, album, id } = currentTrack;
   console.log(currentTrack);
 
   return (
@@ -110,7 +110,7 @@ const Bar = () => {
               isLoop={isLoop}
               toggleLoop={toggleLoop}
             />
-            <TrackPlay author={author} album={album} />
+            <TrackPlay author={author} album={album} id={id} />
           </div>
           <Volume
             step={0.01}

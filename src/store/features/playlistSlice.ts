@@ -1,7 +1,6 @@
 import { fetchFavoriteTracks } from "@/api/playlist";
 import { PlaylistType } from "@/types/playlist";
 import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { access } from "fs";
 
 export const getFavoriteTrack = createAsyncThunk(
   "playlist/getFavoriteTracks",
@@ -62,10 +61,15 @@ state.isShuffle = action.payload
     setLikeTrack: (state, action: PayloadAction<number>)=> {
       const trackId = action.payload
       // добавить в likedPlaylist
+      const track = state.playlist.find((track) => track.id === trackId)
+      if (track && !state.likedPlaylist.includes(track)) {
+        state.likedPlaylist.push(track)
+      }
     },
     setDisLikeTrack: (state, action: PayloadAction<number>)=> {
       const trackId = action.payload
       // убрать из likedPlaylist
+      state.likedPlaylist = state.likedPlaylist.filter((track)=> track.id !== trackId)
     }
   },
   extraReducers(builder) {

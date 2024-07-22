@@ -60,7 +60,8 @@ export async function likeTrack(
           return res.json();
         }
 
-    export async function fetchFavoriteTracks({
+    export async function fetchFavoriteTracks(
+        {
         access,
         refresh
     }: {
@@ -78,4 +79,23 @@ export async function likeTrack(
             refresh
         )
       return res.json();
+    }
+
+    export async function refreshToken(refresh: string) {
+        const res = await fetch(BASE_URL + `/user/token/refresh/`,
+        {
+        method: "POST",
+        body: JSON.stringify({
+          refresh
+        }),
+        headers: {
+          // API требует обязательного указания заголовка content-type, так апи понимает что мы посылаем ему json строчку в теле запроса
+          "Content-Type": "application/json",
+        },
+    })
+    if (!res.ok) {
+        throw new Error ("Не удалось обновить токен")
+    }
+        return res.json()
+        // .then((json) => console.log(json));
     }
