@@ -18,7 +18,7 @@ const Bar = () => {
   const { isPlaying, setIsPlaying } = usePlayerState();
   const [volume, setVolume] = useState<number>(0.5);
   const [isLoop, setIsLoop] = useState<boolean>(false);
-  const [currentTrackIndex, setCurrentTrackIndex] = useState<number>(0);
+  const [currentTrackIndex] = useState<number>(0);
 
   const audioRef = useRef<HTMLAudioElement>(null);
 

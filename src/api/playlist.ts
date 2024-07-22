@@ -97,5 +97,4 @@ export async function likeTrack(
         throw new Error ("Не удалось обновить токен")
     }
         return res.json()
-        // .then((json) => console.log(json));
     }
