@@ -1,5 +1,6 @@
 import { fetchWithAuth } from "@/utils/fetchWithAuth";
 const BASE_URL = "https://skypro-music-api.skyeng.tech/"
+const USER_URL = "https://skypro-music-api.skyeng.tech/user/"
 const API_URL = "https://skypro-music-api.skyeng.tech/catalog/track/all/"
 
 export async function getPlaylist() {
@@ -79,6 +80,64 @@ export async function likeTrack(
             refresh
         )
       return res.json();
+    }
+
+    export async function singInUser ( //login
+        {
+        email,
+        password
+    }: {
+        email:string;
+        password: string
+    }) {
+        const response = await fetch(USER_URL + `/login/`,
+            {
+            method: "POST",
+            body: JSON.stringify({ email, password }), // Передача данных пользователя
+            headers: {
+              "Content-Type": "application/json", // Установка заголовков
+            },
+          });
+      
+          // Преобразование ответа в JSON
+          const json = await response.json();
+      
+          // Проверка успешности запроса
+          if (!response.ok) {
+            throw new Error(json.detail); // В случае ошибки выбрасывается исключение
+          }
+      
+          return json;
+    }
+    
+    export async function singUpUser ( //register
+        {
+        email,
+        password,
+        username,
+    }: {
+        email:string;
+        password: string;
+        username: string;
+    }) {
+        const response = await fetch(USER_URL + `/signup/`,
+            {
+            method: "POST",
+            body: JSON.stringify({ email, password, username }), // Передача данных нового пользователя
+            headers: {
+              "Content-Type": "application/json", // Установка заголовков
+            },
+          });
+      
+          // Преобразование ответа в JSON
+          const json = await response.json();
+      
+          // Проверка успешности запроса
+          if (!response.ok) {
+            throw new Error(json.detail); // В случае ошибки выбрасывается исключение
+          }
+      
+          return json;
     }
 
     export async function refreshToken(refresh: string) {
