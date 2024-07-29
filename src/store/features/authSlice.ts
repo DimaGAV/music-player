@@ -1,20 +1,8 @@
-import { singInUser } from "@/api/playlist";
-import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
-export const getUser = createAsyncThunk(
-  "user/getUser",
-  async (userData: {
-    email: string,
-    password: string
-  }) => { 
-    const user = await singInUser(userData)
-    return user
-  }
-)
-
-type AuthStateType =  {
+type AuthStateType = {
   authState: boolean;
-}
+};
 
 const initialState: AuthStateType = {
   authState: false,
