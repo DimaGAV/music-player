@@ -10,8 +10,8 @@ export default function SignInPage() {
     userData: {
       email: string;
       password: string;
-    },
-    error: string
+    }
+    // event: React.MouseEventHandler<HTMLButtonElement>
   ) => {
     try {
       // Диспетчеризация thunk getUser и разворачивание результата с помощью unwrap
@@ -48,7 +48,7 @@ export default function SignInPage() {
               placeholder="Пароль"
               type="password"
             />
-            <button className="modal__btn-enter">
+            <button className="modal__btn-enter" onClick={() => handleSignin}>
               <a href="../index.html">Войти</a>
             </button>
             <button className="modal__btn-signup">

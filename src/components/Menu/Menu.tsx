@@ -1,3 +1,4 @@
+import Link from "next/link";
 import styles from "./Menu.module.css";
 
 const Menu = () => {
@@ -5,9 +6,9 @@ const Menu = () => {
     <div className={styles.navMenu}>
       <ul className={styles.menuList}>
         <li className={styles.menuItem}>
-          <a className={styles.menuLink} href="#">
+          <Link className={styles.menuLink} href="/">
             Главное
-          </a>
+          </Link>
         </li>
         <li className={styles.menuItem}>
           <a className={styles.menuLink} href="#">
@@ -15,9 +16,9 @@ const Menu = () => {
           </a>
         </li>
         <li className={styles.menuItem}>
-          <a className={styles.menuLink} href="../signin.html">
+          <Link className={styles.menuLink} href="/singin">
             Войти
-          </a>
+          </Link>
         </li>
       </ul>
     </div>
