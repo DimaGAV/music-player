@@ -1,14 +1,15 @@
 import { fetchWithAuth } from "@/utils/fetchWithAuth";
-const BASE_URL = "https://skypro-music-api.skyeng.tech/";
-const USER_URL = "https://skypro-music-api.skyeng.tech/user/";
-const API_URL = "https://skypro-music-api.skyeng.tech/catalog/track/all/";
+const BASE_URL = "https://webdev-music-003b5b991590.herokuapp.com/";
+const USER_URL = `${BASE_URL}user/`;
+const API_URL = `${BASE_URL}catalog/track/all/`;
 
 export async function getPlaylist() {
   const res = await fetch(API_URL);
   if (!res.ok) {
     throw new Error(res.statusText);
   }
-  return res.json();
+  const data = await res.json();
+  return data.data;
 }
 
 export async function likeTrack({
@@ -74,10 +75,11 @@ export async function fetchFavoriteTracks({
     },
     refresh
   );
-  return res.json();
+  const data = await res.json();
+  return data.data;
 }
 
-export async function singInUser({ //login
+export async function singInUser({
   email,
   password,
 }: {
@@ -86,24 +88,22 @@ export async function singInUser({ //login
 }) {
   const response = await fetch(USER_URL + `/login/`, {
     method: "POST",
-    body: JSON.stringify({ email, password }), // Передача данных пользователя
+    body: JSON.stringify({ email, password }),
     headers: {
-      "Content-Type": "application/json", // Установка заголовков
+      "Content-Type": "application/json",
     },
   });
 
-  // Преобразование ответа в JSON
   const json = await response.json();
 
-  // Проверка успешности запроса
   if (!response.ok) {
-    throw new Error(json.detail); // В случае ошибки выбрасывается исключение
+    throw new Error(json.detail);
   }
 
   return json;
 }
 
-export async function singUpUser({ //register
+export async function singUpUser({
   email,
   password,
   username,
@@ -147,3 +147,5 @@ export async function refreshToken(refresh: string) {
   }
   return res.json();
 }
+
+//функция получения токенов

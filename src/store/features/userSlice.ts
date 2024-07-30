@@ -8,7 +8,7 @@ export const getUser = createAsyncThunk(
     return user;
   }
 );
-
+//создать getToken
 const userSlice = createSlice({
   name: "user",
   initialState: {
@@ -30,6 +30,7 @@ const userSlice = createSlice({
       .addCase(getUser.rejected, (state, action) => {
         console.error("Error:", action.error.message); // Выводим сообщение об ошибке в консоль
       });
+    // .addCase
   },
 });
 

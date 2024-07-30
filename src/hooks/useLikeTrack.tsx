@@ -11,7 +11,7 @@ const useLikeTrack = (trackId: number) => {
   };
   const likeTracks = useAppSelector((state) => state.playlist.likedPlaylist);
   //   получаем состояние лайка из избранных треков
-  const isLiked = !!likeTracks.find((track) => track.id === trackId);
+  const isLiked = !!likeTracks.find((track) => track._id === trackId);
   //   !! - двойное отрицание на типы
   const handleLike = async () => {
     if (!tokens.access || !tokens.refresh) return alert("Вы не авторизованы");

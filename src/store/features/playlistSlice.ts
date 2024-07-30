@@ -45,7 +45,7 @@ const playlistSlice = createSlice({
         ? state.shuffledPlaylist
         : state.playlist;
       const currentTrackIndex = playlist.findIndex(
-        (track) => track.id === state.currentTrack?.id
+        (track) => track._id === state.currentTrack?._id
       );
       const newTrack = playlist[currentTrackIndex + 1];
       if (newTrack) {
@@ -57,7 +57,7 @@ const playlistSlice = createSlice({
         ? state.shuffledPlaylist
         : state.playlist;
       const currentTrackIndex = playlist.findIndex(
-        (track) => track.id === state.currentTrack?.id
+        (track) => track._id === state.currentTrack?._id
       );
       const newTrack = playlist[currentTrackIndex - 1];
       if (newTrack) {
@@ -70,7 +70,7 @@ const playlistSlice = createSlice({
     setLikeTrack: (state, action: PayloadAction<number>) => {
       const trackId = action.payload;
       // добавить в likedPlaylist
-      const track = state.playlist.find((track) => track.id === trackId);
+      const track = state.playlist.find((track) => track._id === trackId);
       if (track && !state.likedPlaylist.includes(track)) {
         state.likedPlaylist.push(track);
       }
@@ -79,7 +79,7 @@ const playlistSlice = createSlice({
       const trackId = action.payload;
       // убрать из likedPlaylist
       state.likedPlaylist = state.likedPlaylist.filter(
-        (track) => track.id !== trackId
+        (track) => track._id !== trackId
       );
     },
   },

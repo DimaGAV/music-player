@@ -16,7 +16,7 @@ const Menu = () => {
           </a>
         </li>
         <li className={styles.menuItem}>
-          <Link className={styles.menuLink} href="/singin">
+          <Link className={styles.menuLink} href="/signin">
             Войти
           </Link>
         </li>
