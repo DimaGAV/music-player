@@ -1,10 +1,11 @@
 import { fetchWithAuth } from "@/utils/fetchWithAuth";
 const BASE_URL = "https://webdev-music-003b5b991590.herokuapp.com/";
 const USER_URL = `${BASE_URL}user/`;
-const API_URL = `${BASE_URL}catalog/track/all/`;
+const TRACKS_URL = `${BASE_URL}catalog/track/`;
+// const API_URL = `${BASE_URL}catalog/track/all/`;
 
 export async function getPlaylist() {
-  const res = await fetch(API_URL);
+  const res = await fetch(TRACKS_URL + `all/`);
   if (!res.ok) {
     throw new Error(res.statusText);
   }
@@ -22,7 +23,7 @@ export async function likeTrack({
   refresh: string;
 }) {
   const res = await fetchWithAuth(
-    BASE_URL + `/track/${trackId}/favorite/`,
+    TRACKS_URL + `${trackId}/favorite/`,
     {
       method: "POST",
       headers: {
@@ -45,7 +46,7 @@ export async function disLikeTrack({
   refresh: string;
 }) {
   const res = await fetchWithAuth(
-    BASE_URL + `/track/${trackId}/favorite/`,
+    TRACKS_URL + `${trackId}/favorite/`,
     {
       method: "DELETE",
       headers: {
@@ -57,7 +58,7 @@ export async function disLikeTrack({
 
   return res.json();
 }
-
+//Просмотр избранного
 export async function fetchFavoriteTracks({
   access,
   refresh,
@@ -66,7 +67,7 @@ export async function fetchFavoriteTracks({
   refresh: string;
 }) {
   const res = await fetchWithAuth(
-    BASE_URL + `/track/favorite/all/`,
+    TRACKS_URL + `favorite/all/`,
     {
       method: "GET",
       headers: {
@@ -86,7 +87,7 @@ export async function signInUser({
   email: string;
   password: string;
 }) {
-  const response = await fetch(USER_URL + `/login/`, {
+  const response = await fetch(USER_URL + `login/`, {
     method: "POST",
     body: JSON.stringify({ email, password }),
     headers: {
@@ -112,7 +113,7 @@ export async function signUpUser({
   password: string;
   username: string;
 }) {
-  const response = await fetch(USER_URL + `/signup/`, {
+  const response = await fetch(USER_URL + `signup/`, {
     method: "POST",
     body: JSON.stringify({ email, password, username }), // Передача данных нового пользователя
     headers: {
@@ -131,6 +132,7 @@ export async function signUpUser({
   return json;
 }
 
+//функция получения токенов
 export async function getTokens({
   email,
   password,
@@ -138,7 +140,7 @@ export async function getTokens({
   email: string;
   password: string;
 }) {
-  const response = await fetch(USER_URL + `/token/`, {
+  const response = await fetch(USER_URL + `token/`, {
     method: "POST",
     body: JSON.stringify({ email, password }),
     headers: {
@@ -171,5 +173,3 @@ export async function refreshToken(refresh: string) {
   }
   return res.json();
 }
-
-//функция получения токенов

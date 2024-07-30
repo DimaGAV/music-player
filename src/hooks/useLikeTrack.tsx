@@ -5,14 +5,14 @@ import { setDisLikeTrack, setLikeTrack } from "@/store/features/playlistSlice";
 const useLikeTrack = (trackId: number) => {
   const dispatch = useAppDispatch();
   const tokens = useAppSelector((state) => state.user.tokens);
-  /* const tokens = {
-    access: "",
-    refresh: "",
-  }; */
-  const likeTracks = useAppSelector((state) => state.playlist.likedPlaylist);
+
   //   получаем состояние лайка из избранных треков
-  const isLiked = !!likeTracks.find((track) => track._id === trackId);
+  const likeTracks = useAppSelector((state) => state.playlist.likedPlaylist);
   //   !! - двойное отрицание на типы
+  // console.log("likeTracks:", likeTracks);
+  const isLiked = !!likeTracks.find((track) => track._id === trackId);
+  // console.log("isLiked:", isLiked);
+
   const handleLike = async () => {
     if (!tokens) {
       return null;

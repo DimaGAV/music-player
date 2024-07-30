@@ -56,7 +56,7 @@ const Track = ({ track, tracks }: TrackProps) => {
         <div className={styles.trackAlbum}>
           <span className={styles.trackAlbumLink}>{album}</span>
         </div>
-        <div /* className="track__time" */ onClick={handleLike}>
+        <div onClick={handleLike}>
           {isLiked ? (
             <svg className={styles.trackTimeSvg}>
               <use xlinkHref="img/icon/sprite.svg#icon-like" />
