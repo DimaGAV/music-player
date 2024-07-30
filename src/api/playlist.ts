@@ -79,7 +79,7 @@ export async function fetchFavoriteTracks({
   return data.data;
 }
 
-export async function singInUser({
+export async function signInUser({
   email,
   password,
 }: {
@@ -103,7 +103,7 @@ export async function singInUser({
   return json;
 }
 
-export async function singUpUser({
+export async function signUpUser({
   email,
   password,
   username,
@@ -131,8 +131,32 @@ export async function singUpUser({
   return json;
 }
 
+export async function getTokens({
+  email,
+  password,
+}: {
+  email: string;
+  password: string;
+}) {
+  const response = await fetch(USER_URL + `/token/`, {
+    method: "POST",
+    body: JSON.stringify({ email, password }),
+    headers: {
+      "Content-Type": "application/json",
+    },
+  });
+
+  const json = await response.json();
+
+  if (!response.ok) {
+    throw new Error(json.detail);
+  }
+
+  return json;
+}
+
 export async function refreshToken(refresh: string) {
-  const res = await fetch(BASE_URL + `/user/token/refresh/`, {
+  const res = await fetch(USER_URL + `token/refresh/`, {
     method: "POST",
     body: JSON.stringify({
       refresh,

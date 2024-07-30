@@ -4,16 +4,20 @@ import { setDisLikeTrack, setLikeTrack } from "@/store/features/playlistSlice";
 
 const useLikeTrack = (trackId: number) => {
   const dispatch = useAppDispatch();
-  // const tokens = useAppSelector(state =. state.auth.tokens)
-  const tokens = {
+  const tokens = useAppSelector((state) => state.user.tokens);
+  /* const tokens = {
     access: "",
     refresh: "",
-  };
+  }; */
   const likeTracks = useAppSelector((state) => state.playlist.likedPlaylist);
   //   получаем состояние лайка из избранных треков
   const isLiked = !!likeTracks.find((track) => track._id === trackId);
   //   !! - двойное отрицание на типы
   const handleLike = async () => {
+    if (!tokens) {
+      return null;
+    }
+
     if (!tokens.access || !tokens.refresh) return alert("Вы не авторизованы");
     const action = isLiked ? disLikeTrack : likeTrack;
     try {

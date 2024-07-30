@@ -1,7 +1,7 @@
 "use client";
 import Image from "next/image";
 
-import { getUser } from "@/store/features/userSlice";
+import { getTokensState, getUser } from "@/store/features/userSlice";
 import { useAppDispatch } from "@/hooks";
 import Link from "next/link";
 import { ChangeEvent, useState } from "react";
@@ -44,6 +44,7 @@ function SignInPage() {
       console.log("Успешно!");
 
       //функция получения токенов
+      await dispatch(getTokensState(userData)).unwrap();
 
       router.push("/");
     } catch (error: unknown) {
