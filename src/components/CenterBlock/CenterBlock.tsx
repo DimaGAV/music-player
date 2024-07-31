@@ -1,9 +1,9 @@
 import { getPlaylist } from "@/api/playlist";
 import styles from "./CenterBlock.module.css";
 import Filter from "@/components/Filter/Filter";
-import Playlist from "@/components/Playlist/Playlist";
 import Search from "@/components/Search/Search";
 import { PlaylistType } from "@/types/playlist";
+import MainPlaylist from "../Playlist/MainPlaylist/mainpage";
 
 const CenterBlock = async () => {
   let tracks: PlaylistType[] = [];
@@ -22,7 +22,7 @@ const CenterBlock = async () => {
       <h2 className={styles.centerblockHeader}>Треки</h2>
       <Filter tracks={tracks} />
       {error && <div className={styles.error}>{error}</div>}
-      <Playlist tracks={tracks} />
+      <MainPlaylist tracks={tracks} />
     </div>
   );
 };
