@@ -8,7 +8,7 @@ export const makeStore = () => {
     reducer: combineReducers({
       playlist: playlistReducer,
       user: userReducer,
-      // auth: authReducer,
+      auth: authReducer,
     }),
   });
 };
