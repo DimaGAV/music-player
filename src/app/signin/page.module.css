@@ -12,22 +12,6 @@
   background-color: rgba(0, 0, 0, 0.85);
 }
 
-/* .modal__btn-enter:hover {
-  background-color: #3f007d;
-} */
-
-/* .modal__btn-signup:hover {
-  background-color: #f4f5f6;
-} */
-
-/* .modal__btn-enter:active {
-  background-color: #271a58;
-} */
-
-/* .modal__btn-signup:active {
-  background-color: #d9d9d9;
-} */
-
 .modalBlock {
   position: absolute;
   z-index: 2;
@@ -49,9 +33,6 @@
     margin-bottom: 30px;
   }
 }
-/* .modal__form-login input:first-child {
-    margin-bottom: 30px;
-} */
 
 .modalLogo {
   width: 140px;
@@ -84,42 +65,6 @@
   }
 }
 
-/* .modal__input::-webkit-input-placeholder {
-    font-style: normal;
-    font-weight: 400;
-    font-size: 18px;
-    line-height: 24px;
-    letter-spacing: -0.05px;
-    color: #d0cece;
-}
-
-.modal__input:-ms-input-placeholder {
-    font-style: normal;
-    font-weight: 400;
-    font-size: 18px;
-    line-height: 24px;
-    letter-spacing: -0.05px;
-    color: #d0cece;
-}
-
-.modal__input::-ms-input-placeholder {
-    font-style: normal;
-    font-weight: 400;
-    font-size: 18px;
-    line-height: 24px;
-    letter-spacing: -0.05px;
-    color: #d0cece;
-}
-
-.modal__input::placeholder {
-    font-style: normal;
-    font-weight: 400;
-    font-size: 18px;
-    line-height: 24px;
-    letter-spacing: -0.05px;
-    color: #d0cece;
-} */
-
 .modalBtnEnter {
   width: 278px;
   height: 52px;
@@ -145,26 +90,6 @@
   }
 }
 
-/* .modal__btn-enter a {
-    width: 100%;
-    height: 100%;
-    font-style: normal;
-    font-weight: 400;
-    font-size: 18px;
-    line-height: 24px;
-    letter-spacing: -0.05px;
-    color: #ffffff;
-    display: -webkit-box;
-    display: -ms-flexbox;
-    display: flex;
-    -webkit-box-align: center;
-    -ms-flex-align: center;
-    align-items: center;
-    -webkit-box-pack: center;
-    -ms-flex-pack: center;
-    justify-content: center;
-} */
-
 .modalBtnSignup {
   width: 278px;
   height: 52px;
@@ -187,27 +112,3 @@
     background-color: #d9d9d9;
   }
 }
-
-/* .modal__btn-signup a {
-    width: 100%;
-    height: 100%;
-    font-style: normal;
-    font-weight: 400;
-    font-size: 18px;
-    line-height: 24px;
-    letter-spacing: -0.05px;
-    color: #000000;
-    display: -webkit-box;
-    display: -ms-flexbox;
-    display: flex;
-    -webkit-box-align: center;
-    -ms-flex-align: center;
-    align-items: center;
-    -webkit-box-pack: center;
-    -ms-flex-pack: center;
-    justify-content: center;
-} */
-
-/* .login {
-    margin-bottom: 30px;
-} */
