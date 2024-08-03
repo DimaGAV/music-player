@@ -1,12 +1,13 @@
+import { PlaylistType } from "@/types/playlist";
 import styles from "./Playlist.module.css";
 import classNames from "classnames";
-import { ReactNode } from "react";
+import Track from "../Track/Track";
 
-type PlaylistLayoutProps = {
-  children: ReactNode;
+type PlaylistProps = {
+  tracks: PlaylistType[];
 };
 
-const PlaylistLayout = ({ children }: PlaylistLayoutProps) => {
+const PlaylistLayout = ( { tracks }: PlaylistProps) => {
   return (
     <div className={styles.centerblockContent}>
       <div className={styles.contentTitle}>
@@ -25,7 +26,9 @@ const PlaylistLayout = ({ children }: PlaylistLayoutProps) => {
           </svg>
         </div>
       </div>
-      <div className={styles.contentPlaylist}>{children}</div>
+      <div className={styles.contentPlaylist}>{tracks.map((track) => (
+        <Track key={track._id} track={track} tracks={tracks} />
+      ))}</div>
     </div>
   );
 };

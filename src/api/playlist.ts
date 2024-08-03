@@ -2,7 +2,6 @@ import { fetchWithAuth } from "@/utils/fetchWithAuth";
 const BASE_URL = "https://webdev-music-003b5b991590.herokuapp.com/";
 const USER_URL = `${BASE_URL}user/`;
 const TRACKS_URL = `${BASE_URL}catalog/track/`;
-// const API_URL = `${BASE_URL}catalog/track/all/`;
 
 export async function getPlaylist() {
   const res = await fetch(TRACKS_URL + `all/`);
