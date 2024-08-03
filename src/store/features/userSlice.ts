@@ -1,10 +1,18 @@
-import { getTokens, signInUser } from "@/api/playlist";
+import { getTokens, signInUser, signUpUser } from "@/api/playlist";
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 
 export const getUser = createAsyncThunk(
   "user/getUser",
   async (userData: { email: string; password: string }) => {
     const user = await signInUser(userData);
+    return user;
+  }
+);
+
+export const regUser = createAsyncThunk(
+  "user/regUser",
+  async (userData: { email: string; password: string; username: string }) => {
+    const user = await signUpUser(userData);
     return user;
   }
 );

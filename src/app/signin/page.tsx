@@ -1,5 +1,7 @@
 "use client";
 import Image from "next/image";
+import styles from "./page.module.css";
+
 
 import { getTokensState, getUser } from "@/store/features/userSlice";
 import { useAppDispatch } from "@/hooks";
@@ -56,12 +58,12 @@ function SignInPage() {
   };
 
   return (
-    <div className="wrapper">
-      <div className="container-enter">
-        <div className="modal__block">
-          <form action="#" className="modal__form-login">
-            <a href="../">
-              <div className="modal__logo">
+  <div className={styles.wrapper}>
+      <div className={styles.containerEnter}>
+        <div className={styles.modalBlock}>
+          <form action="#" className={styles.modalFormLogin}>
+            <Link href="/">
+              <div className={styles.modalLogo}>
                 <Image
                   alt="logo"
                   src="/img/logo_modal.png"
@@ -69,10 +71,10 @@ function SignInPage() {
                   height={21}
                 />
               </div>
-            </a>
+            </Link>
             <input
               onChange={handleInputChange}
-              className="modal__input login"
+              className={styles.modalInput}
               name="email"
               value={formData.email}
               placeholder="Почта"
@@ -80,14 +82,14 @@ function SignInPage() {
             />
             <input
               onChange={handleInputChange}
-              className="modal__input password"
+              className={styles.modalInput}
               name="password"
               value={formData.password}
               placeholder="Пароль"
               type="password"
             />
             <button
-              className="modal__btn-enter"
+              className={styles.modalBtnEnter}
               onClick={(e) =>
                 handleSignin(
                   {
@@ -100,7 +102,7 @@ function SignInPage() {
             >
               Войти
             </button>
-            <Link className="modal__btn-signup" href="/signup">
+            <Link className={styles.modalBtnSignup} href="/signup">
               Зарегистрироваться
             </Link>
           </form>
