@@ -41,6 +41,7 @@ function SignInPage() {
     if (!formData.email.trim() || !formData.password.trim()) {
       // return alert("заполнить поля!");
       setLoginError("Пожалуйста, заполните все поля")
+      return
     }
     try {
       // Диспетчеризация thunk getUser и разворачивание результата с помощью unwrap
@@ -52,12 +53,12 @@ function SignInPage() {
       await dispatch(getTokensState(userData)).unwrap();
 
       router.push("/");
-    } catch (error: unknown) {
-      if (error instanceof Error) {
+    } catch (error: any) {
+      // if (error instanceof Error) {
         // Обработка ошибки, если thunk завершился неудачно
         console.error("Ошибка:", error.message);
         setLoginError(error.message)
-      }
+      // }
     }
   };
 

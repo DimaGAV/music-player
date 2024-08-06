@@ -25,7 +25,7 @@ const initialState: PlaylistStateType = {
   shuffledPlaylist: [],
   isShuffle: false,
   likedPlaylist: [],
-initialTracks: [],
+  initialTracks: [],
 };
 
 const playlistSlice = createSlice({
@@ -84,9 +84,9 @@ const playlistSlice = createSlice({
         (track) => track._id !== trackId
       );
     },
-    setInitialTracks: (state, action: PayloadAction<PlaylistType[]>)=> {
-state.initialTracks = action.payload;
-    }
+    setInitialTracks: (state, action: PayloadAction<PlaylistType[]>) => {
+      state.initialTracks = action.payload;
+    },
   },
   extraReducers(builder) {
     builder.addCase(getFavoriteTrack.fulfilled, (state, action) => {

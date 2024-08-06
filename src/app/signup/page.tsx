@@ -9,6 +9,7 @@ import { useRouter } from "next/navigation";
 
 function SignUpPage() {
   const dispatch = useAppDispatch();
+  const [loginError, setLoginError] = useState<string | null>(null);
 
   const router = useRouter();
 
@@ -37,16 +38,17 @@ function SignUpPage() {
   ) => {
     event.preventDefault();
     if (!formData.email.trim() || !formData.password.trim()) {
-      return alert("заполнить поля!");
+      // return alert("заполнить поля!");
+      setLoginError("Пожалуйста, заполните все поля");
+      return;
     }
     try {
       await dispatch(regUser(userData)).unwrap();
       console.log("Успешно!");
       router.push("/");
-    } catch (error: unknown) {
-      if (error instanceof Error) {
-        console.error("Ошибка:", error.message);
-      }
+    } catch (error: any) {
+      console.error("Ошибка:", error.message);
+      setLoginError(error.message);
     }
   };
 
@@ -89,6 +91,7 @@ function SignUpPage() {
               placeholder="Имя пользователя"
               type="text"
             />
+            {loginError && <div className={styles.error}>{loginError}</div>}
             <button
               className={styles.modalBtnEnter}
               onClick={(e) =>

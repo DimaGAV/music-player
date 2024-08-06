@@ -1,11 +1,18 @@
 "use client";
 import Image from "next/image";
 import styles from "./Sidebar.module.css";
-import { useAppDispatch } from "@/hooks";
+import { useAppDispatch, useAppSelector } from "@/hooks";
 import { logout } from "@/store/features/userSlice";
+import { setCurrentTrack } from "@/store/features/playlistSlice";
 
 const Sidebar = () => {
   const dispatch = useAppDispatch();
+  // const currentTrack = useAppSelector((state) => state.playlist.currentTrack);
+
+  const handleLogout =()=>{
+    dispatch(logout());
+    // dispatch(setCurrentTrack(null))
+  }
 
   return (
     <>
@@ -13,7 +20,7 @@ const Sidebar = () => {
         <div className={styles.sidebarPersonal}>
           <p className={styles.sidebarPersonalName}>Sergey.Ivanov</p>
           <div
-            onClick={() => dispatch(logout())}
+            onClick={() => handleLogout()}
             className={styles.sidebarIcon}
           >
             <svg>

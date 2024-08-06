@@ -97,7 +97,7 @@ export async function signInUser({
   const json = await response.json();
 
   if (!response.ok) {
-    throw new Error(json.detail);
+    throw new Error("Ошибка входа");
   }
 
   return json;
@@ -123,12 +123,9 @@ export async function signUpUser({
   // Преобразование ответа в JSON
   const json = await response.json();
 
-  // Проверка успешности запроса
   if (!response.ok) {
-    throw new Error(json.detail); // В случае ошибки выбрасывается исключение
+    throw new Error("Ошибка регистрации");
   }
-
-  return json;
 }
 
 //функция получения токенов
