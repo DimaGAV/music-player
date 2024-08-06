@@ -5,15 +5,6 @@ import { PlayerStateProvider } from "@/contexts/PlayerStateContext";
 
 export default function Home() {
   return (
-    <div className="wrapper">
-      <div className="container">
-        <PlayerStateProvider>
-          <CurrentTrackProvider>
             <Main />
-            <Bar />
-          </CurrentTrackProvider>
-        </PlayerStateProvider>
-      </div>
-    </div>
   );
 }

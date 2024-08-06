@@ -8,9 +8,11 @@ import { useAppDispatch } from "@/hooks";
 import Link from "next/link";
 import { ChangeEvent, useState } from "react";
 import { useRouter } from "next/navigation";
+import Error from "next/error";
 
 function SignInPage() {
   const dispatch = useAppDispatch();
+  const [loginError, setLoginError] = useState<string | null>(null)
 
   const router = useRouter();
 
@@ -37,7 +39,8 @@ function SignInPage() {
   ) => {
     event.preventDefault();
     if (!formData.email.trim() || !formData.password.trim()) {
-      return alert("заполнить поля!");
+      // return alert("заполнить поля!");
+      setLoginError("Пожалуйста, заполните все поля")
     }
     try {
       // Диспетчеризация thunk getUser и разворачивание результата с помощью unwrap
@@ -53,6 +56,7 @@ function SignInPage() {
       if (error instanceof Error) {
         // Обработка ошибки, если thunk завершился неудачно
         console.error("Ошибка:", error.message);
+        setLoginError(error.message)
       }
     }
   };
@@ -88,6 +92,7 @@ function SignInPage() {
               placeholder="Пароль"
               type="password"
             />
+            {loginError && <div className={styles.error}>{loginError}</div>}
             <button
               className={styles.modalBtnEnter}
               onClick={(e) =>

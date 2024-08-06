@@ -11,7 +11,7 @@ const Menu = () => {
           </Link>
         </li>
         <li className={styles.menuItem}>
-          <Link className={styles.menuLink} href="/favorite">
+          <Link className={styles.menuLink} href="/tracks/favorite">
             Мой плейлист
           </Link>
         </li>
