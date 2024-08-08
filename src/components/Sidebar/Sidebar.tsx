@@ -8,6 +8,7 @@ import { setCurrentTrack } from "@/store/features/playlistSlice";
 const Sidebar = () => {
   const dispatch = useAppDispatch();
   const currentTrack = useAppSelector((state) => state.playlist.currentTrack);
+  const user = useAppSelector((state) => state.user.user);
 
   const handleLogout = () => {
     dispatch(logout());
@@ -18,7 +19,11 @@ const Sidebar = () => {
     <>
       <div className={styles.mainSidebar}>
         <div className={styles.sidebarPersonal}>
-          <p className={styles.sidebarPersonalName}>Sergey.Ivanov</p>
+          {user ? (
+            <p className={styles.sidebarPersonalName}>{user.username}</p>
+          ) : (
+            ""
+          )}
           <div onClick={() => handleLogout()} className={styles.sidebarIcon}>
             <svg>
               <use xlinkHref="img/icon/sprite.svg#logout" />
