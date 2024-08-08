@@ -42,16 +42,36 @@ type UserStateType = {
   tokens: TokensType | null;
 };
 
+const loadUserFromLocalStorage = (): UserStateType => {
+  const user = localStorage.getItem("user");
+  const tokens = localStorage.getItem("tokens");
+
+  return {
+    user: user ? JSON.parse(user) : null,
+    tokens: tokens ? JSON.parse(tokens) : null,
+  };
+};
+
+const saveUserToLocalStorage = (state: UserStateType) => {
+  localStorage.setItem("user", JSON.stringify(state.user));
+  localStorage.setItem("tokens", JSON.stringify(state.tokens));
+};
+
+const clearUserFromLocalStorage = () => {
+  localStorage.removeItem("user");
+  localStorage.removeItem("tokens");
+};
+
+const initialState: UserStateType = loadUserFromLocalStorage();
+
 const userSlice = createSlice({
   name: "user",
-  initialState: {
-    user: null,
-    tokens: null,
-  } as UserStateType,
+  initialState,
   reducers: {
     logout: (state) => {
       state.user = null;
       state.tokens = null;
+      clearUserFromLocalStorage();
     },
   },
   extraReducers: (builder) => {
@@ -60,6 +80,7 @@ const userSlice = createSlice({
       // Обработка успешного выполнения асинхронного экшена getUser
       .addCase(getUser.fulfilled, (state, action) => {
         state.user = action.payload; // Обновляем состояние пользователя данными из action.payload
+        saveUserToLocalStorage(state);
       })
       // Обработка неудачного выполнения асинхронного экшена getUser
       .addCase(getUser.rejected, (state, action) => {
@@ -67,6 +88,7 @@ const userSlice = createSlice({
       })
       .addCase(getTokensState.fulfilled, (state, action) => {
         state.tokens = action.payload;
+        saveUserToLocalStorage(state);
       })
       .addCase(getTokensState.rejected, (state, action) => {
         console.error("Error:", action.error.message);

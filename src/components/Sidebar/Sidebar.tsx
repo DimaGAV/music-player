@@ -9,20 +9,17 @@ const Sidebar = () => {
   const dispatch = useAppDispatch();
   const currentTrack = useAppSelector((state) => state.playlist.currentTrack);
 
-  const handleLogout =()=>{
+  const handleLogout = () => {
     dispatch(logout());
-    dispatch(setCurrentTrack({track: Pla, tracks: []}))
-  }
+    dispatch(setCurrentTrack({ track: null, tracks: [] }));
+  };
 
   return (
     <>
       <div className={styles.mainSidebar}>
         <div className={styles.sidebarPersonal}>
           <p className={styles.sidebarPersonalName}>Sergey.Ivanov</p>
-          <div
-            onClick={() => handleLogout()}
-            className={styles.sidebarIcon}
-          >
+          <div onClick={() => handleLogout()} className={styles.sidebarIcon}>
             <svg>
               <use xlinkHref="img/icon/sprite.svg#logout" />
             </svg>

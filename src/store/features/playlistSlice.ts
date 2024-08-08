@@ -34,7 +34,10 @@ const playlistSlice = createSlice({
   reducers: {
     setCurrentTrack: (
       state,
-      action: PayloadAction<{ track: PlaylistType; tracks: PlaylistType[] }>
+      action: PayloadAction<{
+        track: null | PlaylistType;
+        tracks: PlaylistType[];
+      }>
     ) => {
       state.currentTrack = action.payload.track;
       state.playlist = action.payload.tracks;
