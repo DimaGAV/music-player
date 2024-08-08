@@ -21,7 +21,7 @@ const Main = () => {
       .catch((error) => {
         setError(error.message);
       });
-  }, []);
+  }, [dispatch]);
 
   return (
     <main className={styles.main}>

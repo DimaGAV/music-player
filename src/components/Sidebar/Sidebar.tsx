@@ -3,15 +3,15 @@ import Image from "next/image";
 import styles from "./Sidebar.module.css";
 import { useAppDispatch, useAppSelector } from "@/hooks";
 import { logout } from "@/store/features/userSlice";
-// import { setCurrentTrack } from "@/store/features/playlistSlice";
+import { setCurrentTrack } from "@/store/features/playlistSlice";
 
 const Sidebar = () => {
   const dispatch = useAppDispatch();
-  // const currentTrack = useAppSelector((state) => state.playlist.currentTrack);
+  const currentTrack = useAppSelector((state) => state.playlist.currentTrack);
 
   const handleLogout =()=>{
     dispatch(logout());
-    // dispatch(setCurrentTrack(currentTrack = null))
+    dispatch(setCurrentTrack({track: Pla, tracks: []}))
   }
 
   return (
