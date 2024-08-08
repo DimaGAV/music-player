@@ -1,4 +1,5 @@
 import { getTokens, signInUser, signUpUser } from "@/api/playlist";
+import useLikeTrack from "@/hooks/useLikeTrack";
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 
 export const getUser = createAsyncThunk(
@@ -42,7 +43,11 @@ type UserStateType = {
   tokens: TokensType | null;
 };
 
+const isBrowser = typeof window !== "undefined";
+
 const loadUserFromLocalStorage = (): UserStateType => {
+  if (!isBrowser) return { user: null, tokens: null };
+
   const user = localStorage.getItem("user");
   const tokens = localStorage.getItem("tokens");
 
@@ -53,11 +58,15 @@ const loadUserFromLocalStorage = (): UserStateType => {
 };
 
 const saveUserToLocalStorage = (state: UserStateType) => {
+  if (!isBrowser) return;
+
   localStorage.setItem("user", JSON.stringify(state.user));
   localStorage.setItem("tokens", JSON.stringify(state.tokens));
 };
 
 const clearUserFromLocalStorage = () => {
+  if (!isBrowser) return;
+
   localStorage.removeItem("user");
   localStorage.removeItem("tokens");
 };
