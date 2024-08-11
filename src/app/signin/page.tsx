@@ -36,7 +36,6 @@ function SignInPage() {
   ) => {
     event.preventDefault();
     if (!formData.email.trim() || !formData.password.trim()) {
-      // return alert("заполнить поля!");
       setLoginError("Пожалуйста, заполните все поля");
       return;
     }
@@ -44,7 +43,7 @@ function SignInPage() {
       // Диспетчеризация thunk getUser и разворачивание результата с помощью unwrap
       await dispatch(getUser(userData)).unwrap();
       // Действия после успешного выполнения thunk, если необходимо
-      console.log("Успешно!");
+      // console.log("Успешно!");
 
       //функция получения токенов
       await dispatch(getTokensState(userData)).unwrap();

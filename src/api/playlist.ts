@@ -32,6 +32,12 @@ export async function likeTrack({
     refresh
   );
 
+  if (!res.ok) {
+    const errorData = await res.json();
+    throw new Error(
+      `Ошибка ${res.status}: ${errorData.message || "Неизвестная ошибка"}`
+    );
+  }
   return res.json();
 }
 
