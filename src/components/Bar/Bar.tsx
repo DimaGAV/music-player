@@ -99,7 +99,7 @@ const Bar = () => {
           {formatTime(currentTime)} / {formatTime(duration)}
         </div>
         <audio
-          autoPlay
+          // autoPlay
           src={currentTrack.track_file}
           ref={audioRef}
           onTimeUpdate={(e) => setCurrentTime(e.currentTarget.currentTime)}
