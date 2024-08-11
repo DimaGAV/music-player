@@ -90,6 +90,9 @@ const playlistSlice = createSlice({
     setInitialTracks: (state, action: PayloadAction<PlaylistType[]>) => {
       state.initialTracks = action.payload;
     },
+    clearLikedTracks: (state) => {
+      state.likedPlaylist = [];
+    },
   },
   extraReducers(builder) {
     builder.addCase(getFavoriteTrack.fulfilled, (state, action) => {
@@ -109,5 +112,6 @@ export const {
   setDisLikeTrack,
   setLikeTrack,
   setInitialTracks,
+  clearLikedTracks,
 } = playlistSlice.actions;
 export const playlistReducer = playlistSlice.reducer;

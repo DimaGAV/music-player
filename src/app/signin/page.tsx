@@ -11,7 +11,6 @@ import { useRouter } from "next/navigation";
 function SignInPage() {
   const dispatch = useAppDispatch();
   const [loginError, setLoginError] = useState<string | null>(null);
-
   const router = useRouter();
 
   const [formData, setFormData] = useState({
@@ -52,11 +51,8 @@ function SignInPage() {
 
       router.push("/");
     } catch (error: any) {
-      // if (error instanceof Error) {
-      // Обработка ошибки, если thunk завершился неудачно
       console.error("Ошибка:", error.message);
       setLoginError(error.message);
-      // }
     }
   };
 

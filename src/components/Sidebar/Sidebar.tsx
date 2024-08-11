@@ -3,23 +3,28 @@ import Image from "next/image";
 import styles from "./Sidebar.module.css";
 import { useAppDispatch, useAppSelector } from "@/hooks";
 import { logout } from "@/store/features/userSlice";
-import { setCurrentTrack } from "@/store/features/playlistSlice";
+import {
+  clearLikedTracks,
+  setCurrentTrack,
+} from "@/store/features/playlistSlice";
 
 const Sidebar = () => {
   const dispatch = useAppDispatch();
-  // const currentTrack = useAppSelector((state) => state.playlist.currentTrack);
   const user = useAppSelector((state) => state.user.user);
 
   const handleLogout = () => {
     dispatch(logout());
     dispatch(setCurrentTrack({ track: null, tracks: [] }));
+    dispatch(clearLikedTracks());
   };
 
   return (
     <>
       <div className={styles.mainSidebar}>
         <div className={styles.sidebarPersonal}>
-          <p className={styles.sidebarPersonalName}>Пользователь</p>
+          <p className={styles.sidebarPersonalName}>
+            {user?.username || "Пользователь"}
+          </p>
           <div onClick={() => handleLogout()} className={styles.sidebarIcon}>
             <svg>
               <use xlinkHref="img/icon/sprite.svg#logout" />

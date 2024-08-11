@@ -3,17 +3,20 @@ import Link from "next/link";
 import styles from "./Menu.module.css";
 import { useAppDispatch, useAppSelector } from "@/hooks";
 import { logout } from "@/store/features/userSlice";
-import { setCurrentTrack } from "@/store/features/playlistSlice";
+import {
+  clearLikedTracks,
+  setCurrentTrack,
+} from "@/store/features/playlistSlice";
 
 const Menu = () => {
   const tokens = useAppSelector((state) => state.user.tokens);
 
   const dispatch = useAppDispatch();
-  const currentTrack = useAppSelector((state) => state.playlist.currentTrack);
 
   const handleLogout = () => {
     dispatch(logout());
     dispatch(setCurrentTrack({ track: null, tracks: [] }));
+    dispatch(clearLikedTracks());
   };
 
   return (
