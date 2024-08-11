@@ -12,6 +12,7 @@ import { setNextTrack } from "@/store/features/playlistSlice";
 
 const Bar = () => {
   const currentTrack = useAppSelector((state) => state.playlist.currentTrack);
+  // const currentTrack = useAppSelector((state) => state.playlist.initialTracks);
   // const playlist = useAppSelector((state) => state.playlist.playlist);
   const playlist = useAppSelector((state) => state.playlist.initialTracks);
 
@@ -69,21 +70,27 @@ const Bar = () => {
     if (audioRef.current) {
       const audio = audioRef.current;
       audio.src = playlist[currentTrackIndex].track_file;
-      audio.play();
+      if (isPlaying) {
+        audio.play().catch((error) => {
+          // console.error("Playback error:", error);
+        });
+      } else {
+        audio.pause();
+      }
 
       audio.addEventListener("ended", handleEnded);
       return () => {
         audio.removeEventListener("ended", handleEnded);
       };
     }
-  }, [playlist, currentTrackIndex, handleEnded]);
+  }, [playlist, currentTrackIndex, handleEnded, isPlaying]);
 
   if (!currentTrack) {
     return null;
   }
 
   const { author, album, _id } = currentTrack;
-  console.log(currentTrack);
+  // console.log(currentTrack);
 
   return (
     <div className={styles.bar}>

@@ -20,7 +20,7 @@ export default function Favorite() {
           console.error("Ошибка:", error.message);
         });
     } else {
-      console.error("Ошибка авторизации");
+      console.error("Ошибка избранного");
     }
   }, [dispatch, tokens]);
 

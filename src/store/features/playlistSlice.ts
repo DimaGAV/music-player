@@ -39,9 +39,10 @@ const playlistSlice = createSlice({
         tracks: PlaylistType[];
       }>
     ) => {
+      console.log("Setting current track:", action.payload.track);
       state.currentTrack = action.payload.track;
       state.initialTracks = action.payload.tracks;
-      // state.playlist = action.payload.tracks;
+      state.playlist = action.payload.tracks;
       state.shuffledPlaylist = [...action.payload.tracks].sort(
         () => 0.5 - Math.random()
       );

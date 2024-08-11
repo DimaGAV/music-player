@@ -22,6 +22,7 @@ const Track = ({ track, tracks }: TrackProps) => {
   const currentTrack = useAppSelector((state) => state.playlist.currentTrack);
 
   const handleTrackClick = () => {
+    console.log("Track clicked:", track);
     dispatch(setCurrentTrack({ track, tracks }));
     setIsPlaying(true);
   };
