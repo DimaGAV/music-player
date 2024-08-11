@@ -45,7 +45,7 @@ function SignUpPage() {
     try {
       await dispatch(regUser(userData)).unwrap();
       console.log("Успешно!");
-      router.push("/");
+      router.push("/signin");
     } catch (error: any) {
       console.error("Ошибка:", error.message);
       setLoginError(error.message);

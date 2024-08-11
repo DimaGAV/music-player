@@ -12,7 +12,8 @@ import { setNextTrack } from "@/store/features/playlistSlice";
 
 const Bar = () => {
   const currentTrack = useAppSelector((state) => state.playlist.currentTrack);
-  const playlist = useAppSelector((state) => state.playlist.playlist);
+  // const playlist = useAppSelector((state) => state.playlist.playlist);
+  const playlist = useAppSelector((state) => state.playlist.initialTracks);
 
   const [currentTime, setCurrentTime] = useState<number>(0);
   const { isPlaying, setIsPlaying } = usePlayerState();

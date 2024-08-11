@@ -7,10 +7,16 @@ import {
   clearLikedTracks,
   setCurrentTrack,
 } from "@/store/features/playlistSlice";
+import { useEffect, useState } from "react";
 
 const Sidebar = () => {
   const dispatch = useAppDispatch();
   const user = useAppSelector((state) => state.user.user);
+  const [isClient, setIsClient] = useState<boolean>(false);
+
+  useEffect(() => {
+    setIsClient(true);
+  }, []);
 
   const handleLogout = () => {
     dispatch(logout());
@@ -23,7 +29,7 @@ const Sidebar = () => {
       <div className={styles.mainSidebar}>
         <div className={styles.sidebarPersonal}>
           <p className={styles.sidebarPersonalName}>
-            {user?.username || "Пользователь"}
+            {isClient ? user?.username || "Пользователь" : ""}
           </p>
           <div onClick={() => handleLogout()} className={styles.sidebarIcon}>
             <svg>
