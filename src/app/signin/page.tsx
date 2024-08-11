@@ -2,17 +2,15 @@
 import Image from "next/image";
 import styles from "./page.module.css";
 
-
 import { getTokensState, getUser } from "@/store/features/userSlice";
 import { useAppDispatch } from "@/hooks";
 import Link from "next/link";
 import { ChangeEvent, useState } from "react";
 import { useRouter } from "next/navigation";
-import Error from "next/error";
 
 function SignInPage() {
   const dispatch = useAppDispatch();
-  const [loginError, setLoginError] = useState<string | null>(null)
+  const [loginError, setLoginError] = useState<string | null>(null);
 
   const router = useRouter();
 
@@ -40,8 +38,8 @@ function SignInPage() {
     event.preventDefault();
     if (!formData.email.trim() || !formData.password.trim()) {
       // return alert("заполнить поля!");
-      setLoginError("Пожалуйста, заполните все поля")
-      return
+      setLoginError("Пожалуйста, заполните все поля");
+      return;
     }
     try {
       // Диспетчеризация thunk getUser и разворачивание результата с помощью unwrap
@@ -55,15 +53,15 @@ function SignInPage() {
       router.push("/");
     } catch (error: any) {
       // if (error instanceof Error) {
-        // Обработка ошибки, если thunk завершился неудачно
-        console.error("Ошибка:", error.message);
-        setLoginError(error.message)
+      // Обработка ошибки, если thunk завершился неудачно
+      console.error("Ошибка:", error.message);
+      setLoginError(error.message);
       // }
     }
   };
 
   return (
-  <div className={styles.wrapper}>
+    <div className={styles.wrapper}>
       <div className={styles.containerEnter}>
         <div className={styles.modalBlock}>
           <form action="#" className={styles.modalFormLogin}>

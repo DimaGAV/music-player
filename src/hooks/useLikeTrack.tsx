@@ -11,7 +11,7 @@ const useLikeTrack = (trackId: number) => {
   //   !! - двойное отрицание на типы
   // console.log("likeTracks:", likeTracks);
   const isLiked = !!likeTracks.find((track) => track._id === trackId);
-  console.log(isLiked);
+  // console.log(isLiked);
 
   const handleLike = async () => {
     if (!tokens || !tokens.access || !tokens.refresh)

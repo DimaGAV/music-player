@@ -1,5 +1,4 @@
 import { getTokens, signInUser, signUpUser } from "@/api/playlist";
-import useLikeTrack from "@/hooks/useLikeTrack";
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 
 export const getUser = createAsyncThunk(
