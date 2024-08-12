@@ -64,8 +64,10 @@ const Bar = () => {
   useEffect(() => {
     if (audioRef.current && currentTrack) {
       const audio = audioRef.current;
-      audio.src = currentTrack.track_file || "";
 
+      if (audio.src !== currentTrack.track_file) {
+        audio.src = currentTrack.track_file || "";
+      }
       audio.addEventListener("ended", handleEnded);
 
       if (isPlaying) {

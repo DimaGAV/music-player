@@ -33,7 +33,7 @@ const Sidebar = () => {
           </p>
           <div onClick={() => handleLogout()} className={styles.sidebarIcon}>
             <svg>
-              <use xlinkHref="img/icon/sprite.svg#logout" />
+              <use xlinkHref="../img/icon/sprite.svg#logout" />
             </svg>
           </div>
         </div>
