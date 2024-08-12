@@ -12,18 +12,13 @@ import { setNextTrack } from "@/store/features/playlistSlice";
 
 const Bar = () => {
   const currentTrack = useAppSelector((state) => state.playlist.currentTrack);
-  // const currentTrack = useAppSelector((state) => state.playlist.initialTracks);
-  // const playlist = useAppSelector((state) => state.playlist.playlist);
-  const playlist = useAppSelector((state) => state.playlist.initialTracks);
 
   const [currentTime, setCurrentTime] = useState<number>(0);
   const { isPlaying, setIsPlaying } = usePlayerState();
   const [volume, setVolume] = useState<number>(0.5);
   const [isLoop, setIsLoop] = useState<boolean>(false);
-  const [currentTrackIndex] = useState<number>(0);
 
   const audioRef = useRef<HTMLAudioElement>(null);
-
   const duration = audioRef.current?.duration || 0;
 
   const togglePlay = () => {
@@ -67,30 +62,31 @@ const Bar = () => {
   }, [dispatch]);
 
   useEffect(() => {
-    if (audioRef.current) {
+    if (audioRef.current && currentTrack) {
       const audio = audioRef.current;
-      audio.src = playlist[currentTrackIndex].track_file;
+      audio.src = currentTrack.track_file || "";
+
+      audio.addEventListener("ended", handleEnded);
+
       if (isPlaying) {
         audio.play().catch((error) => {
-          // console.error("Playback error:", error);
+          console.error("Playback error:", error);
         });
       } else {
         audio.pause();
       }
 
-      audio.addEventListener("ended", handleEnded);
       return () => {
         audio.removeEventListener("ended", handleEnded);
       };
     }
-  }, [playlist, currentTrackIndex, handleEnded, isPlaying]);
+  }, [currentTrack, handleEnded, isPlaying]);
 
   if (!currentTrack) {
     return null;
   }
 
   const { author, album, _id } = currentTrack;
-  // console.log(currentTrack);
 
   return (
     <div className={styles.bar}>
@@ -99,7 +95,6 @@ const Bar = () => {
           {formatTime(currentTime)} / {formatTime(duration)}
         </div>
         <audio
-          // autoPlay
           src={currentTrack.track_file}
           ref={audioRef}
           onTimeUpdate={(e) => setCurrentTime(e.currentTarget.currentTime)}
