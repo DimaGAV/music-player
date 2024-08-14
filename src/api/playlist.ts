@@ -14,7 +14,7 @@ export async function getPlaylist() {
 }
 
 export async function getSelectionPlaylist(id: string) {
-  const res = await fetch(SELECT_URL + id + `/`);
+  const res = await fetch(SELECT_URL + id);
   if (!res.ok) {
     throw new Error(res.statusText);
   }
