@@ -1,4 +1,5 @@
 "use client";
+
 import Image from "next/image";
 import styles from "./Sidebar.module.css";
 import { useAppDispatch, useAppSelector } from "@/hooks";

@@ -14,12 +14,12 @@ export async function getPlaylist() {
 }
 
 export async function getSelectionPlaylist(id: string) {
-  const res = await fetch(SELECT_URL + id);
+  const res = await fetch(SELECT_URL + id + `/`);
   if (!res.ok) {
     throw new Error(res.statusText);
   }
   const data = await res.json();
-  return data.data;
+  return data.item;
 }
 
 export async function likeTrack({

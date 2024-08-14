@@ -1,6 +1,5 @@
 import { getSelectionPlaylist } from "@/api/playlist";
 import CenterBlock from "@/components/CenterBlock/CenterBlock";
-import Playlist from "@/components/Playlist/Playlist";
 
 type selectionPageType = {
   params: { id: string };
