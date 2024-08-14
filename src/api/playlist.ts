@@ -102,11 +102,17 @@ export async function signInUser({
 
   const json = await response.json();
 
-  if (!response.ok) {
-    throw new Error("Ошибка входа");
+  if (response.status === 401) {
+    throw new Error("Пользователь с таким email или паролем не найден");
   }
-
-  return json;
+  if (response.status === 500) {
+    throw new Error("Сервер сломался. Попробуйте позже");
+  }
+  if (response.ok) {
+    return json;
+  } else {
+    throw new Error("Email или пароль неверен");
+  }
 }
 
 export async function signUpUser({
@@ -129,8 +135,22 @@ export async function signUpUser({
   // Преобразование ответа в JSON
   const json = await response.json();
 
-  if (!response.ok) {
-    throw new Error("Ошибка регистрации");
+  if (response.status === 403) {
+    throw new Error("Введенный Email уже занят");
+  }
+  if (response.status === 412) {
+    throw new Error("Пароль должен быть больше 6 символов");
+  }
+  if (response.status === 400) {
+    throw new Error(
+      "Только цифры и латинские буквы (или спец символы: @/./+/-/_)"
+    );
+  }
+  if (response.status === 500) {
+    throw new Error("Сервер сломался. Попробуйте позже");
+  }
+  if (response.ok) {
+    return json;
   }
 }
 
