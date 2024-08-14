@@ -1,15 +1,18 @@
 import Bar from "@/components/Bar/Bar";
-import Main from "@/components/Main/Main";
+import Navigation from "@/components/Navigation/Navigation";
+import Sidebar from "@/components/Sidebar/Sidebar";
 import { CurrentTrackProvider } from "@/contexts/CurrentTrackProvider";
 import { PlayerStateProvider } from "@/contexts/PlayerStateContext";
 
-export default function Home() {
+export default function Layout({ children }: { children: React.ReactNode }) {
   return (
     <div className="wrapper">
       <div className="container">
         <PlayerStateProvider>
           <CurrentTrackProvider>
-            <Main />
+            <Navigation />
+            {children}
+            <Sidebar />
             <Bar />
           </CurrentTrackProvider>
         </PlayerStateProvider>

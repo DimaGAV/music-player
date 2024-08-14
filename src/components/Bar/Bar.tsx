@@ -12,16 +12,13 @@ import { setNextTrack } from "@/store/features/playlistSlice";
 
 const Bar = () => {
   const currentTrack = useAppSelector((state) => state.playlist.currentTrack);
-  const playlist = useAppSelector((state) => state.playlist.playlist);
 
   const [currentTime, setCurrentTime] = useState<number>(0);
   const { isPlaying, setIsPlaying } = usePlayerState();
   const [volume, setVolume] = useState<number>(0.5);
   const [isLoop, setIsLoop] = useState<boolean>(false);
-  const [currentTrackIndex, setCurrentTrackIndex] = useState<number>(0);
 
   const audioRef = useRef<HTMLAudioElement>(null);
-
   const duration = audioRef.current?.duration || 0;
 
   const togglePlay = () => {
@@ -65,24 +62,33 @@ const Bar = () => {
   }, [dispatch]);
 
   useEffect(() => {
-    if (audioRef.current) {
+    if (audioRef.current && currentTrack) {
       const audio = audioRef.current;
-      audio.src = playlist[currentTrackIndex].track_file;
-      audio.play();
 
+      if (audio.src !== currentTrack.track_file) {
+        audio.src = currentTrack.track_file || "";
+      }
       audio.addEventListener("ended", handleEnded);
+
+      if (isPlaying) {
+        audio.play().catch((error) => {
+          console.error("Playback error:", error);
+        });
+      } else {
+        audio.pause();
+      }
+
       return () => {
         audio.removeEventListener("ended", handleEnded);
       };
     }
-  }, [playlist, currentTrackIndex, handleEnded]);
+  }, [currentTrack, handleEnded, isPlaying]);
 
   if (!currentTrack) {
     return null;
   }
 
-  const { author, album } = currentTrack;
-  console.log(currentTrack);
+  const { author, album, _id } = currentTrack;
 
   return (
     <div className={styles.bar}>
@@ -91,7 +97,6 @@ const Bar = () => {
           {formatTime(currentTime)} / {formatTime(duration)}
         </div>
         <audio
-          autoPlay
           src={currentTrack.track_file}
           ref={audioRef}
           onTimeUpdate={(e) => setCurrentTime(e.currentTarget.currentTime)}
@@ -110,7 +115,7 @@ const Bar = () => {
               isLoop={isLoop}
               toggleLoop={toggleLoop}
             />
-            <TrackPlay author={author} album={album} />
+            <TrackPlay author={author} album={album} id={_id} />
           </div>
           <Volume
             step={0.01}

@@ -6,6 +6,7 @@ import { formatTime } from "@/utils/formatTime";
 import { usePlayerState } from "@/contexts/PlayerStateContext";
 import { useAppDispatch, useAppSelector } from "@/hooks";
 import { setCurrentTrack } from "@/store/features/playlistSlice";
+import useLikeTrack from "@/hooks/useLikeTrack";
 
 type TrackProps = {
   track: PlaylistType;
@@ -16,6 +17,7 @@ const Track = ({ track, tracks }: TrackProps) => {
   const { name, author, album, duration_in_seconds } = track;
 
   const dispatch = useAppDispatch();
+  const { isLiked, handleLike } = useLikeTrack(track._id);
   const { isPlaying, setIsPlaying } = usePlayerState();
   const currentTrack = useAppSelector((state) => state.playlist.currentTrack);
 
@@ -24,7 +26,7 @@ const Track = ({ track, tracks }: TrackProps) => {
     setIsPlaying(true);
   };
 
-  const isCurrentTrack = currentTrack?.id === track.id;
+  const isCurrentTrack = currentTrack?._id === track._id;
 
   return (
     <div className={styles.playlistItem}>
@@ -37,7 +39,7 @@ const Track = ({ track, tracks }: TrackProps) => {
               />
             ) : (
               <svg className={styles.trackTitleSvg}>
-                <use xlinkHref="img/icon/sprite.svg#icon-note" />
+                <use xlinkHref="../img/icon/sprite.svg#icon-note" />
               </svg>
             )}
           </div>
@@ -54,10 +56,16 @@ const Track = ({ track, tracks }: TrackProps) => {
         <div className={styles.trackAlbum}>
           <span className={styles.trackAlbumLink}>{album}</span>
         </div>
-        <div className="track__time">
-          <svg className={styles.trackTimeSvg}>
-            <use xlinkHref="img/icon/sprite.svg#icon-like" />
-          </svg>
+        <div onClick={handleLike}>
+          {isLiked ? (
+            <svg className={styles.trackTimeSvg}>
+              <use xlinkHref="../img/icon/sprite.svg#icon-like" />
+            </svg>
+          ) : (
+            <svg className={styles.trackTimeSvg}>
+              <use xlinkHref="../img/icon/sprite.svg#icon-dislike" />
+            </svg>
+          )}
           <span className={styles.trackTimeText}>
             {formatTime(duration_in_seconds)}
           </span>

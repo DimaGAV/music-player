@@ -1,7 +1,7 @@
 import { UserType } from "./user";
 
 export type PlaylistType = {
-  id: number;
+  _id: number;
   name: string;
   author: string;
   release_date: string;
@@ -11,4 +11,4 @@ export type PlaylistType = {
   logo: string | null;
   track_file: string;
   stared_user: UserType[];
-}
+};
