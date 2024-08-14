@@ -8,6 +8,7 @@ import {
   setCurrentTrack,
 } from "@/store/features/playlistSlice";
 import { useEffect, useState } from "react";
+import Link from "next/link";
 
 const Sidebar = () => {
   const dispatch = useAppDispatch();
@@ -33,14 +34,14 @@ const Sidebar = () => {
           </p>
           <div onClick={() => handleLogout()} className={styles.sidebarIcon}>
             <svg>
-              <use xlinkHref="../img/icon/sprite.svg#logout" />
+              <use xlinkHref="/img/icon/sprite.svg#logout" />
             </svg>
           </div>
         </div>
         <div className={styles.sidebarBlock}>
           <div className={styles.sidebarList}>
             <div className={styles.sidebarItem}>
-              <a className={styles.sidebarLink} href="#">
+              <Link className={styles.sidebarLink} href="/tracks/selection/1">
                 <Image
                   priority={true}
                   alt="day's playlist"
@@ -48,10 +49,10 @@ const Sidebar = () => {
                   width={250}
                   height={150}
                 />
-              </a>
+              </Link>
             </div>
             <div className={styles.sidebarItem}>
-              <a className={styles.sidebarLink} href="#">
+              <Link className={styles.sidebarLink} href="/tracks/selection/2">
                 <Image
                   priority={true}
                   alt="day's playlist"
@@ -59,10 +60,10 @@ const Sidebar = () => {
                   width={250}
                   height={150}
                 />
-              </a>
+              </Link>
             </div>
             <div className={styles.sidebarItem}>
-              <a className={styles.sidebarLink} href="#">
+              <Link className={styles.sidebarLink} href="/tracks/selection/3">
                 <Image
                   priority={true}
                   alt="day's playlist"
@@ -70,7 +71,7 @@ const Sidebar = () => {
                   width={250}
                   height={150}
                 />
-              </a>
+              </Link>
             </div>
           </div>
         </div>

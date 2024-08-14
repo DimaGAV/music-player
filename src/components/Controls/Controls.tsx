@@ -30,17 +30,17 @@ const Controls = ({
         className={styles.playerBtnPrev}
       >
         <svg className={styles.playerBtnPrevSvg}>
-          <use xlinkHref="../img/icon/sprite.svg#icon-prev" />
+          <use xlinkHref="/img/icon/sprite.svg#icon-prev" />
         </svg>
       </div>
       <div onClick={togglePlay} className={styles.playerBtnPlay}>
         {isPlaying ? (
           <svg className={styles.playerBtnPlaySvg}>
-            <use xlinkHref="../img/icon/sprite.svg#icon-pause" />
+            <use xlinkHref="/img/icon/sprite.svg#icon-pause" />
           </svg>
         ) : (
           <svg className={styles.playerBtnPlaySvg}>
-            <use xlinkHref="../img/icon/sprite.svg#icon-play" />
+            <use xlinkHref="/img/icon/sprite.svg#icon-play" />
           </svg>
         )}
       </div>

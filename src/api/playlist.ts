@@ -2,9 +2,19 @@ import { fetchWithAuth } from "@/utils/fetchWithAuth";
 const BASE_URL = "https://webdev-music-003b5b991590.herokuapp.com/";
 const USER_URL = `${BASE_URL}user/`;
 const TRACKS_URL = `${BASE_URL}catalog/track/`;
+const SELECT_URL = `${BASE_URL}catalog/selection/`;
 
 export async function getPlaylist() {
   const res = await fetch(TRACKS_URL + `all/`);
+  if (!res.ok) {
+    throw new Error(res.statusText);
+  }
+  const data = await res.json();
+  return data.data;
+}
+
+export async function getSelectionPlaylist(id: string) {
+  const res = await fetch(SELECT_URL + id);
   if (!res.ok) {
     throw new Error(res.statusText);
   }
