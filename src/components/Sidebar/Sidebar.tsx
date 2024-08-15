@@ -14,19 +14,19 @@ import Link from "next/link";
 const playlists = [
   {
     id: 1,
-    href: "/tracks/selection/4",
+    href: "/tracks/selection/2",
     src: "/img/playlist01.png",
     alt: "day's playlist",
   },
   {
     id: 2,
-    href: "/tracks/selection/2",
+    href: "/tracks/selection/3",
     src: "/img/playlist02.png",
     alt: "100 dance hits",
   },
   {
     id: 3,
-    href: "/tracks/selection/3",
+    href: "/tracks/selection/4",
     src: "/img/playlist03.png",
     alt: "indie charge",
   },
