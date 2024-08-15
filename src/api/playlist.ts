@@ -18,8 +18,17 @@ export async function getSelectionPlaylist(id: string) {
   if (!res.ok) {
     throw new Error(res.statusText);
   }
-  const data = await res.json();
-  return data.item;
+
+  const json = await res.json();
+
+  if (!json.data || !json.data.items) {
+    console.error("Данные:", json);
+    throw new Error(
+      "Ошибка данных: Плейлист не найден или отсутствуют элементы"
+    );
+  }
+
+  return json.data.items;
 }
 
 export async function likeTrack({
@@ -70,7 +79,12 @@ export async function disLikeTrack({
     },
     refresh
   );
-
+  if (!res.ok) {
+    const errorData = await res.json();
+    throw new Error(
+      `Ошибка ${res.status}: ${errorData.message || "Неизвестная ошибка"}`
+    );
+  }
   return res.json();
 }
 //Просмотр избранного
