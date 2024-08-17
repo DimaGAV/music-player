@@ -29,5 +29,6 @@ export default function Favorite() {
     }
   }, [dispatch, tokens]);
 
-  return <CenterBlock tracks={favorite} />;
+  const title = "Мои треки"
+  return <CenterBlock tracks={favorite} title = {title}/>;
 }
