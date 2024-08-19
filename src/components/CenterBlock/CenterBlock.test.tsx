@@ -1,7 +1,7 @@
 import { render, screen } from "@testing-library/react";
 import CenterBlock from "@/components/CenterBlock/CenterBlock";
 import { PlaylistType } from "@/types/playlist";
-import '@testing-library/jest-dom';
+import "@testing-library/jest-dom";
 import { Provider } from "react-redux";
 import configureMockStore from "redux-mock-store";
 
@@ -10,12 +10,12 @@ const mockStore = configureMockStore();
 const store = mockStore({
   user: {
     tokens: {
-      accessToken: 'mockAccessToken',
-      refreshToken: 'mockRefreshToken',
+      accessToken: "mockAccessToken",
+      refreshToken: "mockRefreshToken",
     },
     user: {
       id: 1,
-      username: 'mockUser',
+      username: "mockUser",
     },
   },
 });
@@ -36,35 +36,35 @@ const mockTracks: PlaylistType[] = [
 ];
 
 describe("CenterBlock", () => {
-  it("renders title correctly", () => {
+  it("корректный рендер заголовка", () => {
     render(
       <Provider store={store}>
         <CenterBlock tracks={mockTracks} title="Test Title" />
       </Provider>
     );
-    
+
     const titleElement = screen.getByText(/Test Title/i);
     expect(titleElement).toBeInTheDocument();
   });
 
-  it("renders the default title if no title is provided", () => {
+  it("отображает заголовок по умолчанию, если заголовок не указан", () => {
     render(
       <Provider store={store}>
         <CenterBlock tracks={mockTracks} />
       </Provider>
     );
-    
+
     const defaultTitleElement = screen.getByText(/Треки/i);
     expect(defaultTitleElement).toBeInTheDocument();
   });
 
-  it("renders error message if error prop is provided", () => {
+  it("выводит сообщение об ошибке, если указан параметр error prop", () => {
     render(
       <Provider store={store}>
         <CenterBlock tracks={mockTracks} error="Test Error" />
       </Provider>
     );
-    
+
     const errorElement = screen.getByText(/Test Error/i);
     expect(errorElement).toBeInTheDocument();
   });
@@ -75,7 +75,7 @@ describe("CenterBlock", () => {
         <CenterBlock tracks={mockTracks} />
       </Provider>
     );
-    
+
     const playlistItems = screen.getAllByText(/Track 1/i);
     expect(playlistItems.length).toBeGreaterThan(0);
   });
