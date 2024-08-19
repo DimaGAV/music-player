@@ -10,7 +10,7 @@ export const getFavoriteTrack = createAsyncThunk(
   }
 );
 
-type PlaylistStateType = {
+export type PlaylistStateType = {
   currentTrack: null | PlaylistType;
   playlist: PlaylistType[];
   shuffledPlaylist: PlaylistType[];

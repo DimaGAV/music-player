@@ -11,8 +11,19 @@ import { useAppDispatch, useAppSelector } from "@/hooks";
 import { setNextTrack } from "@/store/features/playlistSlice";
 
 const Bar = () => {
-  const currentTrack = useAppSelector((state) => state.playlist.currentTrack);
-
+  // const currentTrack = useAppSelector((state) => state.playlist.currentTrack);
+  const currentTrack = {
+    _id: 2,
+    name: "Test Track 2",
+    author: "Test Artist 2",
+    release_date: "2024-02-01",
+    genre: "Rock",
+    duration_in_seconds: 210,
+    album: "Test Album 2",
+    logo: "/path/to/logo2.png",
+    track_file: "/path/to/track2.mp3",
+    stared_user: [],
+}
   const [currentTime, setCurrentTime] = useState<number>(0);
   const { isPlaying, setIsPlaying } = usePlayerState();
   const [volume, setVolume] = useState<number>(0.5);
