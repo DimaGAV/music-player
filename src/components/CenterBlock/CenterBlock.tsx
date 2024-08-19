@@ -6,7 +6,7 @@ import { PlaylistType } from "@/types/playlist";
 
 type CenterBlockProps = {
   tracks: PlaylistType[];
-  title: string;
+  title?: string;
   error?: string;
 };
 
