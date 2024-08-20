@@ -1,7 +1,7 @@
 import { render, screen } from "@testing-library/react";
 import Playlist from "./Playlist";
 import { PlaylistType } from "@/types/playlist";
-import '@testing-library/jest-dom';
+import "@testing-library/jest-dom";
 import ReduxProvider from "@/store/ReduxProvider";
 import { PlayerStateProvider } from "@/contexts/PlayerStateContext";
 
@@ -34,26 +34,22 @@ const mockTracks: PlaylistType[] = [
 ];
 
 describe("Playlist component", () => {
-    beforeEach(()=>render(
-        <ReduxProvider>
-            <PlayerStateProvider>
-        <Playlist tracks={mockTracks} />;
+  beforeEach(() =>
+    render(
+      <ReduxProvider>
+        <PlayerStateProvider>
+          <Playlist tracks={mockTracks} />;
         </PlayerStateProvider>
-        </ReduxProvider>))
+      </ReduxProvider>
+    )
+  );
   it("должны правильно отображать названия плейлистов", () => {
-    
-
     expect(screen.getByText("Трек")).toBeInTheDocument();
     expect(screen.getByText("Исполнитель")).toBeInTheDocument();
     expect(screen.getByText("Альбом")).toBeInTheDocument();
   });
 
   it("должен рендерить все треки", () => {
-    /* render(
-        <ReduxProvider>
-        <Playlist tracks={mockTracks} />;
-        </ReduxProvider>) */
-
     expect(screen.getByText("Test Track 1")).toBeInTheDocument();
     expect(screen.getByText("Test Artist 1")).toBeInTheDocument();
     expect(screen.getByText("Test Album 1")).toBeInTheDocument();

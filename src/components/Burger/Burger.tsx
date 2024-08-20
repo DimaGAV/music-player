@@ -7,7 +7,11 @@ interface BurgerProps {
 }
 const Burger = ({ toggleMenu }: BurgerProps) => {
   return (
-    <div onClick={toggleMenu} className={styles.navBurger}>
+    <div
+      onClick={toggleMenu}
+      className={styles.navBurger}
+      data-testid="burger-button"
+    >
       <span className={styles.burgerLine} />
       <span className={styles.burgerLine} />
       <span className={styles.burgerLine} />
