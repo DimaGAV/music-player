@@ -10,7 +10,8 @@ const Burger = ({ toggleMenu }: BurgerProps) => {
     <div
       onClick={toggleMenu}
       className={styles.navBurger}
-      data-testid="burger-button"
+      role="button"
+      aria-label="Toggle menu"
     >
       <span className={styles.burgerLine} />
       <span className={styles.burgerLine} />
