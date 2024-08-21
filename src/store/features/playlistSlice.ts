@@ -41,7 +41,6 @@ const playlistSlice = createSlice({
     ) => {
       state.currentTrack = action.payload.track;
       state.initialTracks = action.payload.tracks;
-      // state.playlist = action.payload.tracks;
       state.shuffledPlaylist = [...action.payload.tracks].sort(
         () => 0.5 - Math.random()
       );
@@ -50,7 +49,6 @@ const playlistSlice = createSlice({
       const playlist = state.isShuffle
         ? state.shuffledPlaylist
         : state.initialTracks;
-      // : state.playlist;
       const currentTrackIndex = playlist.findIndex(
         (track) => track._id === state.currentTrack?._id
       );
