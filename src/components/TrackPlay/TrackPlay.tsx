@@ -15,7 +15,7 @@ const TrackPlay = ({ author, album, id }: TrackPlayProps) => {
       <div className={styles.trackPlayContain}>
         <div className={styles.trackPlayImage}>
           <svg className={styles.trackPlaySvg}>
-            <use xlinkHref="img/icon/sprite.svg#icon-note" />
+            <use xlinkHref="/img/icon/sprite.svg#icon-note" />
           </svg>
         </div>
         <div className={styles.trackPlayAuthor}>
@@ -33,11 +33,11 @@ const TrackPlay = ({ author, album, id }: TrackPlayProps) => {
         <div className={styles.trackPlayLike} onClick={handleLike}>
           {isLiked ? (
             <svg className={styles.trackPlayLikeSvg}>
-              <use xlinkHref="img/icon/sprite.svg#icon-like" />
+              <use xlinkHref="/img/icon/sprite.svg#icon-like" />
             </svg>
           ) : (
             <svg className={styles.trackPlayLikeSvg}>
-              <use xlinkHref="img/icon/sprite.svg#icon-dislike" />
+              <use xlinkHref="/img/icon/sprite.svg#icon-dislike" />
             </svg>
           )}
         </div>

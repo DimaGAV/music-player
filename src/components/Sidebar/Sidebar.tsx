@@ -1,4 +1,5 @@
 "use client";
+
 import Image from "next/image";
 import styles from "./Sidebar.module.css";
 import { useAppDispatch, useAppSelector } from "@/hooks";
@@ -8,6 +9,28 @@ import {
   setCurrentTrack,
 } from "@/store/features/playlistSlice";
 import { useEffect, useState } from "react";
+import Link from "next/link";
+
+const playlists = [
+  {
+    id: 1,
+    href: "/tracks/selection/2",
+    src: "/img/playlist01.png",
+    alt: "day's playlist",
+  },
+  {
+    id: 2,
+    href: "/tracks/selection/3",
+    src: "/img/playlist02.png",
+    alt: "100 dance hits",
+  },
+  {
+    id: 3,
+    href: "/tracks/selection/4",
+    src: "/img/playlist03.png",
+    alt: "indie charge",
+  },
+];
 
 const Sidebar = () => {
   const dispatch = useAppDispatch();
@@ -25,57 +48,35 @@ const Sidebar = () => {
   };
 
   return (
-    <>
-      <div className={styles.mainSidebar}>
-        <div className={styles.sidebarPersonal}>
-          <p className={styles.sidebarPersonalName}>
-            {isClient ? user?.username || "Пользователь" : ""}
-          </p>
-          <div onClick={() => handleLogout()} className={styles.sidebarIcon}>
-            <svg>
-              <use xlinkHref="../img/icon/sprite.svg#logout" />
-            </svg>
-          </div>
-        </div>
-        <div className={styles.sidebarBlock}>
-          <div className={styles.sidebarList}>
-            <div className={styles.sidebarItem}>
-              <a className={styles.sidebarLink} href="#">
-                <Image
-                  priority={true}
-                  alt="day's playlist"
-                  src="/img/playlist01.png"
-                  width={250}
-                  height={150}
-                />
-              </a>
-            </div>
-            <div className={styles.sidebarItem}>
-              <a className={styles.sidebarLink} href="#">
-                <Image
-                  priority={true}
-                  alt="day's playlist"
-                  src="/img/playlist02.png"
-                  width={250}
-                  height={150}
-                />
-              </a>
-            </div>
-            <div className={styles.sidebarItem}>
-              <a className={styles.sidebarLink} href="#">
-                <Image
-                  priority={true}
-                  alt="day's playlist"
-                  src="/img/playlist03.png"
-                  width={250}
-                  height={150}
-                />
-              </a>
-            </div>
-          </div>
+    <div className={styles.mainSidebar}>
+      <div className={styles.sidebarPersonal}>
+        <p className={styles.sidebarPersonalName}>
+          {isClient ? user?.username || "Пользователь" : ""}
+        </p>
+        <div onClick={() => handleLogout()} className={styles.sidebarIcon}>
+          <svg>
+            <use xlinkHref="/img/icon/sprite.svg#logout" />
+          </svg>
         </div>
       </div>
-    </>
+      <div className={styles.sidebarBlock}>
+        <div className={styles.sidebarList}>
+          {playlists.map((playlist) => (
+            <div key={playlist.id} className={styles.sidebarItem}>
+              <Link className={styles.sidebarLink} href={playlist.href}>
+                <Image
+                  priority={true}
+                  alt={playlist.alt}
+                  src={playlist.src}
+                  width={250}
+                  height={150}
+                />
+              </Link>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
   );
 };
 

@@ -7,7 +7,12 @@ interface BurgerProps {
 }
 const Burger = ({ toggleMenu }: BurgerProps) => {
   return (
-    <div onClick={toggleMenu} className={styles.navBurger}>
+    <div
+      onClick={toggleMenu}
+      className={styles.navBurger}
+      role="button"
+      aria-label="Toggle menu"
+    >
       <span className={styles.burgerLine} />
       <span className={styles.burgerLine} />
       <span className={styles.burgerLine} />

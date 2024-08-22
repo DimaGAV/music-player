@@ -7,9 +7,9 @@ type PlayerStateContextProps = {
   setIsPlaying: React.Dispatch<React.SetStateAction<boolean>>;
 };
 
-const PlayerStateContext = createContext<PlayerStateContextProps | undefined>(
-  undefined
-);
+export const PlayerStateContext = createContext<
+  PlayerStateContextProps | undefined
+>(undefined);
 
 type PlayerStateProviderProps = {
   children: ReactNode;

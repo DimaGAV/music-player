@@ -6,18 +6,18 @@ import { PlaylistType } from "@/types/playlist";
 
 type CenterBlockProps = {
   tracks: PlaylistType[];
+  title?: string;
   error?: string;
 };
 
-const CenterBlock = ({tracks, error}: CenterBlockProps) => {
-  
+const CenterBlock = ({ tracks = [], error, title }: CenterBlockProps) => {
   return (
     <div className={styles.mainCenterblock}>
       <Search />
-      <h2 className={styles.centerblockHeader}>Треки</h2>
+      <h2 className={styles.centerblockHeader}>{title || "Треки"}</h2>
       <Filter tracks={tracks} />
       {error && <div className={styles.error}>{error}</div>}
-      <Playlist tracks={tracks}/>
+      <Playlist tracks={tracks} />
     </div>
   );
 };

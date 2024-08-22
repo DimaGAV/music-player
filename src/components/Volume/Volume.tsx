@@ -24,7 +24,7 @@ const Volume = ({ step, value, onChange }: VolumeProps) => {
       <div className={styles.volumeContent}>
         <div className={styles.volumeImage}>
           <svg className={styles.volumeSvg}>
-            <use xlinkHref="img/icon/sprite.svg#icon-volume" />
+            <use xlinkHref="/img/icon/sprite.svg#icon-volume" />
           </svg>
         </div>
         <div className={styles.volumeProgress}>
