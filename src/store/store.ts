@@ -1,12 +1,14 @@
 import { combineReducers, configureStore } from "@reduxjs/toolkit";
 import { playlistReducer } from "./features/playlistSlice";
 import { userReducer } from "./features/userSlice";
+import { filterReducer } from "./features/filtersSlice";
 
 export const makeStore = () => {
   return configureStore({
     reducer: combineReducers({
       playlist: playlistReducer,
       user: userReducer,
+      filters: filterReducer,
     }),
   });
 };

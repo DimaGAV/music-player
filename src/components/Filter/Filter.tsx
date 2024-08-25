@@ -1,24 +1,33 @@
-"use client";
 import { PlaylistType } from "@/types/playlist";
 import styles from "./Filter.module.css";
 import { getUniqueValues } from "@/utils/getUniqueValues";
 import FilterItem from "./FilterItem/FilterItem";
 import { useState } from "react";
+import { FiltersState } from "@/store/features/filtersSlice";
 
 const SORT_OPTIONS = ["По умолчанию", "Сначала новые", "Сначала старые"];
 
 type FilterProps = {
   tracks: PlaylistType[];
+  filters: {
+    genres: string[];
+    authors: string[];
+    sortOption: string;
+  };
+  onFilterUpdate: (newFilters: Partial<FiltersState>) => void;
 };
 
-const Filter = ({ tracks }: FilterProps) => {
+const Filter = ({ tracks, filters, onFilterUpdate }: FilterProps) => {
   const [activeFilter, setActiveFilter] = useState<string | null>(null);
 
   const handleFilter = (filterName: string) => {
     setActiveFilter((prev) => (prev === filterName ? null : filterName));
+    // You can update the filters state here if needed
+    // For example:
+    onFilterUpdate({ sortOption: filterName });
   };
 
-  const filters = [
+  const filterItems = [
     {
       title: "исполнителю",
       key: "author",
@@ -39,7 +48,7 @@ const Filter = ({ tracks }: FilterProps) => {
   return (
     <div className={styles.centerblockFilter}>
       <div className={styles.filterTitle}>Искать по:</div>
-      {filters.map((filter) => (
+      {filterItems.map((filter) => (
         <FilterItem
           key={filter.title}
           title={filter.title}
