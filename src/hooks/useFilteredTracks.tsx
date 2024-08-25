@@ -31,14 +31,13 @@ const useFilteredTracks = (tracks: PlaylistType[], filters: FiltersState) => {
       const lowerKeyword = filters.keyword.toLowerCase();
       result = result.filter(
         (track) =>
-          track.name.toLowerCase().includes(lowerKeyword) ||
-          track.author.toLowerCase().includes(lowerKeyword)
+          track.name.toLowerCase().includes(lowerKeyword)
       );
     }
 
     // Сортировка треков
     if (filters.sortOption !== "По умолчанию") {
-      result = result.sort((a, b) => {
+      result = [...result].sort((a, b) => {
         const dateA = new Date(a.release_date).getTime();
         const dateB = new Date(b.release_date).getTime();
 

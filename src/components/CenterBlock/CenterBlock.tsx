@@ -1,3 +1,5 @@
+"use client"
+
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { updateFilters } from "@/store/features/filtersSlice";
@@ -35,7 +37,12 @@ const CenterBlock = ({ tracks = [], error, title }: CenterBlockProps) => {
       <h2 className={styles.centerblockHeader}>{title || "Треки"}</h2>
       <Filter tracks={tracks} filters={filters} onFilterUpdate={handleFilterUpdate} />
       {error && <div className={styles.error}>{error}</div>}
-      <Playlist tracks={filteredTracks} />
+      {/* <Playlist tracks={filteredTracks} /> */}
+      {filteredTracks.length > 0 ? (
+        <Playlist tracks={filteredTracks} />
+      ) : (
+        <div className={styles.noTracks}>Треки не найдены</div>
+      )}
     </div>
   );
 };
