@@ -24,7 +24,7 @@ const filtersSlice = createSlice({
         ...action.payload,
       };
     },
-    resetFilters(state) {
+    resetFilters() {
       return initialFiltersState;
     },
   },
