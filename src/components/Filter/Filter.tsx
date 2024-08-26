@@ -4,6 +4,7 @@ import styles from "./Filter.module.css";
 import { getUniqueValues } from "@/utils/getUniqueValues";
 import FilterItem from "./FilterItem/FilterItem";
 import { FiltersState } from "@/store/features/filtersSlice";
+import { useRouter } from "next/router";
 
 type FilterProps = {
   tracks: PlaylistType[];
@@ -15,7 +16,7 @@ const SORT_OPTIONS = ["По умолчанию", "Сначала новые", "�
 
 const Filter = ({ tracks, filters, onFilterUpdate }: FilterProps) => {
   const [openFilter, setOpenFilter] = useState<string | null>(null);
-
+  
   const handleSortOption = (sortOption: string) => {
     onFilterUpdate({ sortOption });
   };

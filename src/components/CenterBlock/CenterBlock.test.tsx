@@ -19,6 +19,12 @@ const initialState = {
     likedPlaylist: [],
     tracks: [],
   },
+  filters: {
+    keyword: "",  // Поле для поиска
+    genres: [],   // Инициализация списка жанров
+    authors: [],  // Инициализация списка авторов
+    sortOrder: "По умолчанию",  // Поле для порядка сортировки
+  },
 };
 const store = mockStore(initialState);
 
