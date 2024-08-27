@@ -21,7 +21,7 @@ const Menu = () => {
   };
 
   const handleResetFilters = () => {
-    dispatch(resetFilters()); // Сброс фильтров при переходе на главную
+    dispatch(resetFilters());
   };
 
   return (
