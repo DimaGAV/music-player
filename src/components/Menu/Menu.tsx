@@ -34,7 +34,7 @@ const Menu = () => {
         </li>
         {tokens ? (
           <li className={styles.menuItem}>
-            <Link className={styles.menuLink} href="/tracks/favorite">
+            <Link className={styles.menuLink} href="/tracks/favorite" onClick={handleResetFilters}>
               Мой плейлист
             </Link>
           </li>

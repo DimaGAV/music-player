@@ -10,6 +10,7 @@ import {
 } from "@/store/features/playlistSlice";
 import { useEffect, useState } from "react";
 import Link from "next/link";
+import { resetFilters } from "@/store/features/filtersSlice";
 
 const playlists = [
   {
@@ -47,6 +48,10 @@ const Sidebar = () => {
     dispatch(clearLikedTracks());
   };
 
+  const handleResetFilters = () => {
+    dispatch(resetFilters());
+  };
+
   return (
     <div className={styles.mainSidebar}>
       <div className={styles.sidebarPersonal}>
@@ -63,7 +68,7 @@ const Sidebar = () => {
         <div className={styles.sidebarList}>
           {playlists.map((playlist) => (
             <div key={playlist.id} className={styles.sidebarItem}>
-              <Link className={styles.sidebarLink} href={playlist.href}>
+              <Link className={styles.sidebarLink} href={playlist.href} onClick={handleResetFilters}>
                 <Image
                   priority={true}
                   alt={playlist.alt}
