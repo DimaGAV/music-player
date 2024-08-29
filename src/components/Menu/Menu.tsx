@@ -7,6 +7,7 @@ import {
   clearLikedTracks,
   setCurrentTrack,
 } from "@/store/features/playlistSlice";
+import { resetFilters } from "@/store/features/filtersSlice";
 
 const Menu = () => {
   const tokens = useAppSelector((state) => state.user.tokens);
@@ -19,17 +20,21 @@ const Menu = () => {
     dispatch(clearLikedTracks());
   };
 
+  const handleResetFilters = () => {
+    dispatch(resetFilters());
+  };
+
   return (
     <div className={styles.navMenu}>
       <ul className={styles.menuList}>
         <li className={styles.menuItem}>
-          <Link className={styles.menuLink} href="/">
+          <Link className={styles.menuLink} href="/" onClick={handleResetFilters}>
             Главное
           </Link>
         </li>
         {tokens ? (
           <li className={styles.menuItem}>
-            <Link className={styles.menuLink} href="/tracks/favorite">
+            <Link className={styles.menuLink} href="/tracks/favorite" onClick={handleResetFilters}>
               Мой плейлист
             </Link>
           </li>

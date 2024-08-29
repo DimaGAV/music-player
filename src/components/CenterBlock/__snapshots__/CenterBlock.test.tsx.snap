@@ -17,6 +17,7 @@ exports[`корректный рендеринг с ошибкой 1`] = `
     <input
       className="searchText"
       name="search"
+      onChange={[Function]}
       placeholder="Поиск"
       type="search"
     />
@@ -71,41 +72,9 @@ exports[`корректный рендеринг с ошибкой 1`] = `
     Произошла ошибка
   </div>
   <div
-    className="centerblockContent"
+    className="noTracks"
   >
-    <div
-      className="contentTitle"
-    >
-      <div
-        className="playlistTitleCol col01"
-      >
-        Трек
-      </div>
-      <div
-        className="playlistTitleCol col02"
-      >
-        Исполнитель
-      </div>
-      <div
-        className="playlistTitleCol col03"
-      >
-        Альбом
-      </div>
-      <div
-        className="playlistTitleCol col04"
-      >
-        <svg
-          className="playlistTitleSvg"
-        >
-          <use
-            xlinkHref="/img/icon/sprite.svg#icon-watch"
-          />
-        </svg>
-      </div>
-    </div>
-    <div
-      className="contentPlaylist"
-    />
+    Треки не найдены
   </div>
 </div>
 `;
@@ -127,6 +96,7 @@ exports[`корректный рендеринг треков и заголов�
     <input
       className="searchText"
       name="search"
+      onChange={[Function]}
       placeholder="Поиск"
       type="search"
     />

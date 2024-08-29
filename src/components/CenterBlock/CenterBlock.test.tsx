@@ -6,7 +6,6 @@ import configureStore from "redux-mock-store";
 import { Provider } from "react-redux";
 import { PlayerStateContext } from "@/contexts/PlayerStateContext";
 
-// Создаем мокированный стор
 const mockStore = configureStore();
 const initialState = {
   user: {
@@ -19,10 +18,15 @@ const initialState = {
     likedPlaylist: [],
     tracks: [],
   },
+  filters: {
+    keyword: "",
+    genres: [],
+    authors: [],
+    sortOrder: "По умолчанию",
+  },
 };
 const store = mockStore(initialState);
 
-// Мокаем состояние для PlayerStateContext
 const mockPlayerState = {
   isPlaying: false,
   setIsPlaying: jest.fn(),

@@ -1,53 +1,67 @@
-"use client";
+import { useState } from "react";
 import { PlaylistType } from "@/types/playlist";
 import styles from "./Filter.module.css";
 import { getUniqueValues } from "@/utils/getUniqueValues";
 import FilterItem from "./FilterItem/FilterItem";
-import { useState } from "react";
-
-const SORT_OPTIONS = ["По умолчанию", "Сначала новые", "Сначала старые"];
+import { FiltersState } from "@/store/features/filtersSlice";
+import { useRouter } from "next/router";
 
 type FilterProps = {
   tracks: PlaylistType[];
+  filters: FiltersState;
+  onFilterUpdate: (newFilters: Partial<FiltersState>) => void;
 };
 
-const Filter = ({ tracks }: FilterProps) => {
-  const [activeFilter, setActiveFilter] = useState<string | null>(null);
+const SORT_OPTIONS = ["По умолчанию", "Сначала новые", "Сначала старые"];
 
-  const handleFilter = (filterName: string) => {
-    setActiveFilter((prev) => (prev === filterName ? null : filterName));
+const Filter = ({ tracks, filters, onFilterUpdate }: FilterProps) => {
+  const [openFilter, setOpenFilter] = useState<string | null>(null);
+  
+  const handleSortOption = (sortOption: string) => {
+    onFilterUpdate({ sortOption });
   };
 
-  const filters = [
-    {
-      title: "исполнителю",
-      key: "author",
-      list: getUniqueValues(tracks, "author"),
-    },
-    {
-      title: "году выпуска",
-      key: "year",
-      list: SORT_OPTIONS,
-    },
-    {
-      title: "жанру",
-      key: "genre",
-      list: getUniqueValues(tracks, "genre"),
-    },
-  ];
+  const handleMultipleFilter = (key: keyof FiltersState, value: string) => {
+    const currentFilter = filters[key];
+
+    if (Array.isArray(currentFilter)) {
+      const newValues = currentFilter.includes(value)
+        ? currentFilter.filter((item) => item !== value)
+        : [...currentFilter, value];
+      onFilterUpdate({ [key]: newValues });
+    }
+  };
+
+  const toggleFilter = (filterName: string) => {
+    setOpenFilter((prev) => (prev === filterName ? null : filterName));
+  };
 
   return (
     <div className={styles.centerblockFilter}>
       <div className={styles.filterTitle}>Искать по:</div>
-      {filters.map((filter) => (
-        <FilterItem
-          key={filter.title}
-          title={filter.title}
-          isActive={activeFilter === filter.title}
-          list={filter.list}
-          handleFilter={() => handleFilter(filter.title)}
-        />
-      ))}
+      <FilterItem
+        title="исполнителю"
+        isActive={openFilter === "исполнителю"}
+        list={getUniqueValues(tracks, "author")}
+        multiple={true}
+        handleFilter={(value) => handleMultipleFilter("authors", value)}
+        onToggle={() => toggleFilter("исполнителю")}
+      />
+      <FilterItem
+        title="году выпуска"
+        isActive={openFilter === "году выпуска"}
+        list={SORT_OPTIONS}
+        handleFilter={(value) => handleSortOption(value)}
+        onToggle={() => toggleFilter("году выпуска")}
+      />
+      <FilterItem
+        title="жанру"
+        isActive={openFilter === "жанру"}
+        list={getUniqueValues(tracks, "genre")}
+        multiple={true}
+        handleFilter={(value) => handleMultipleFilter("genres", value)}
+        onToggle={() => toggleFilter("жанру")}
+      />
     </div>
   );
 };

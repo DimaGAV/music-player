@@ -1,6 +1,15 @@
+import React, { ChangeEvent } from "react";
 import styles from "./Search.module.css";
 
-const Search = () => {
+type SearchProps = {
+  onSearch: (keyword: string) => void;
+};
+
+const Search = ({ onSearch }: SearchProps) => {
+  const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
+    onSearch(e.target.value);
+  };
+
   return (
     <div className={styles.centerblockSearch}>
       <svg className={styles.searchSvg}>
@@ -11,6 +20,7 @@ const Search = () => {
         name="search"
         placeholder="Поиск"
         type="search"
+        onChange={handleChange}
       />
     </div>
   );

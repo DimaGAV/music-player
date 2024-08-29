@@ -38,13 +38,11 @@ function SignUpPage() {
   ) => {
     event.preventDefault();
     if (!formData.email.trim() || !formData.password.trim()) {
-      // return alert("заполнить поля!");
       setLoginError("Пожалуйста, заполните все поля");
       return;
     }
     try {
       await dispatch(regUser(userData)).unwrap();
-      console.log("Успешно!");
       router.push("/signin");
     } catch (error: any) {
       console.error("Ошибка:", error.message);

@@ -87,7 +87,7 @@ export async function disLikeTrack({
   }
   return res.json();
 }
-//Просмотр избранного
+
 export async function fetchFavoriteTracks({
   access,
   refresh,
@@ -150,13 +150,12 @@ export async function signUpUser({
 }) {
   const response = await fetch(USER_URL + `signup/`, {
     method: "POST",
-    body: JSON.stringify({ email, password, username }), // Передача данных нового пользователя
+    body: JSON.stringify({ email, password, username }),
     headers: {
-      "Content-Type": "application/json", // Установка заголовков
+      "Content-Type": "application/json",
     },
   });
 
-  // Преобразование ответа в JSON
   const json = await response.json();
 
   if (response.status === 403) {
@@ -178,7 +177,6 @@ export async function signUpUser({
   }
 }
 
-//функция получения токенов
 export async function getTokens({
   email,
   password,
@@ -210,7 +208,6 @@ export async function refreshToken(refresh: string) {
       refresh,
     }),
     headers: {
-      // API требует обязательного указания заголовка content-type, так апи понимает что мы посылаем ему json строчку в теле запроса
       "Content-Type": "application/json",
     },
   });

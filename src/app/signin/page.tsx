@@ -19,11 +19,11 @@ function SignInPage() {
   });
 
   const handleInputChange = (event: ChangeEvent<HTMLInputElement>) => {
-    const { name, value } = event.target; // Извлекаем имя поля и его значение
+    const { name, value } = event.target;
 
     setFormData({
-      ...formData, // Копируем текущие данные из состояния
-      [name]: value, // Обновляем нужное поле
+      ...formData,
+      [name]: value,
     });
   };
 
@@ -40,12 +40,7 @@ function SignInPage() {
       return;
     }
     try {
-      // Диспетчеризация thunk getUser и разворачивание результата с помощью unwrap
       await dispatch(getUser(userData)).unwrap();
-      // Действия после успешного выполнения thunk, если необходимо
-      // console.log("Успешно!");
-
-      //функция получения токенов
       await dispatch(getTokensState(userData)).unwrap();
 
       router.push("/");

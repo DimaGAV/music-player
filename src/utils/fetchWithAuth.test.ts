@@ -1,9 +1,6 @@
 import { fetchWithAuth } from "@/utils/fetchWithAuth";
 import { refreshToken } from "../api/playlist";
-// import fetch, { Response } from "node-fetch";
 import "whatwg-fetch";
-
-// global.fetch = fetch;
 
 // Мокаем функцию refreshToken
 jest.mock("../api/playlist", () => ({
